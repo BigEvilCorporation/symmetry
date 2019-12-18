@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Symcraft" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option output="bin/Debug/Symcraft" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="../../symmetry" />
+				<Option object_output="obj/Debug/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add library="GL" />
+					<Add library="GLU" />
+					<Add library="SDL" />
+					<Add library="SDL_image" />
+					<Add library="SDL_ttf" />
+					<Add library="Newton" />
+					<Add library="avutil" />
+					<Add library="avformat" />
+					<Add library="swscale" />
+					<Add library="Cg" />
+					<Add library="CgGL" />
+					<Add library="tolua++" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option output="bin/Release/Symcraft" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj/Release/" />
+				<Option type="0" />
+				<Option compiler="gcc" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+		</Build>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="`wx-config --cflags`" />
+		</Compiler>
+		<Linker>
+			<Add option="`wx-config --libs --gl-libs`" />
+			<Add library="lua" />
+			<Add library="SDL" />
+			<Add library="SDL_image" />
+			<Add library="SDL_ttf" />
+			<Add library="Newton" />
+			<Add library="avutil" />
+			<Add library="avformat" />
+			<Add library="swscale" />
+			<Add library="Cg" />
+			<Add library="CgGL" />
+		</Linker>
+		<Unit filename="AppAssets.cpp" />
+		<Unit filename="AppAssets.h" />
+		<Unit filename="AppGLViewport.cpp" />
+		<Unit filename="AppGLViewport.h" />
+		<Unit filename="AppMain.cpp" />
+		<Unit filename="AppMain.h" />
+		<Unit filename="AppOpenGL.cpp" />
+		<Unit filename="AppOpenGL.h" />
+		<Unit filename="SYM_3DS.cpp" />
+		<Unit filename="SYM_3DS.h" />
+		<Unit filename="../../symmetry/SYM_3DMaths.cpp" />
+		<Unit filename="../../symmetry/SYM_3DMaths.h" />
+		<Unit filename="../../symmetry/SYM_AABB.cpp" />
+		<Unit filename="../../symmetry/SYM_AABB.h" />
+		<Unit filename="../../symmetry/SYM_Brush.cpp" />
+		<Unit filename="../../symmetry/SYM_Brush.h" />
+		<Unit filename="../../symmetry/SYM_Camera.cpp" />
+		<Unit filename="../../symmetry/SYM_Camera.h" />
+		<Unit filename="../../symmetry/SYM_Console.cpp" />
+		<Unit filename="../../symmetry/SYM_Console.h" />
+		<Unit filename="../../symmetry/SYM_Debug.cpp" />
+		<Unit filename="../../symmetry/SYM_Debug.h" />
+		<Unit filename="../../symmetry/SYM_Engine.cpp" />
+		<Unit filename="../../symmetry/SYM_Engine.h" />
+		<Unit filename="../../symmetry/SYM_Font.cpp" />
+		<Unit filename="../../symmetry/SYM_Font.h" />
+		<Unit filename="../../symmetry/SYM_Geometry.cpp" />
+		<Unit filename="../../symmetry/SYM_Geometry.h" />
+		<Unit filename="../../symmetry/SYM_Input.cpp" />
+		<Unit filename="../../symmetry/SYM_Input.h" />
+		<Unit filename="../../symmetry/SYM_Level.cpp" />
+		<Unit filename="../../symmetry/SYM_Level.h" />
+		<Unit filename="../../symmetry/SYM_Logger.cpp" />
+		<Unit filename="../../symmetry/SYM_Logger.h" />
+		<Unit filename="../../symmetry/SYM_MPEG.cpp" />
+		<Unit filename="../../symmetry/SYM_MPEG.h" />
+		<Unit filename="../../symmetry/SYM_Material.cpp" />
+		<Unit filename="../../symmetry/SYM_Material.h" />
+		<Unit filename="../../symmetry/SYM_Mesh.cpp" />
+		<Unit filename="../../symmetry/SYM_Mesh.h" />
+		<Unit filename="../../symmetry/SYM_Model.cpp" />
+		<Unit filename="../../symmetry/SYM_Model.h" />
+		<Unit filename="../../symmetry/SYM_Octree.cpp" />
+		<Unit filename="../../symmetry/SYM_Octree.h" />
+		<Unit filename="../../symmetry/SYM_Physics.cpp" />
+		<Unit filename="../../symmetry/SYM_Physics.h" />
+		<Unit filename="../../symmetry/SYM_PhysicsObject.cpp" />
+		<Unit filename="../../symmetry/SYM_PhysicsObject.h" />
+		<Unit filename="../../symmetry/SYM_Placeable.cpp" />
+		<Unit filename="../../symmetry/SYM_Placeable.h" />
+		<Unit filename="../../symmetry/SYM_Resource.h" />
+		<Unit filename="../../symmetry/SYM_SDL_GL_Utils.cpp" />
+		<Unit filename="../../symmetry/SYM_SDL_GL_Utils.h" />
+		<Unit filename="../../symmetry/SYM_Scene.cpp" />
+		<Unit filename="../../symmetry/SYM_Scene.h" />
+		<Unit filename="../../symmetry/SYM_Script.cpp" />
+		<Unit filename="../../symmetry/SYM_Script.h" />
+		<Unit filename="../../symmetry/SYM_Shader.cpp" />
+		<Unit filename="../../symmetry/SYM_Shader.h" />
+		<Unit filename="../../symmetry/SYM_Skybox.cpp" />
+		<Unit filename="../../symmetry/SYM_Skybox.h" />
+		<Unit filename="../../symmetry/SYM_Sprite.cpp" />
+		<Unit filename="../../symmetry/SYM_Sprite.h" />
+		<Unit filename="../../symmetry/SYM_Terrain.cpp" />
+		<Unit filename="../../symmetry/SYM_Terrain.h" />
+		<Unit filename="../../symmetry/SYM_Texture.cpp" />
+		<Unit filename="../../symmetry/SYM_Texture.h" />
+		<Unit filename="../../symmetry/SYM_Timer.cpp" />
+		<Unit filename="../../symmetry/SYM_Timer.h" />
+		<Unit filename="../../symmetry/lua_binding/lua_matrix.cpp" />
+		<Unit filename="../../symmetry/lua_binding/lua_matrix.h" />
+		<Unit filename="../../symmetry/lua_binding/lua_vector.cpp" />
+		<Unit filename="../../symmetry/lua_binding/lua_vector.h" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

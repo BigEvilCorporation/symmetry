@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectName>Symmetry</ProjectName>
+    <ProjectGuid>{3C5F577D-869A-4654-BB08-3E89C61E96DC}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.CPP.UpgradeFromVC71.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28307.799</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>Debug\</OutDir>
+    <IntDir>Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>Release\</OutDir>
+    <IntDir>Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\dependencies\include\lua;..\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;SYM_DLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/entry:WinMainCRTStartup
+/subsystem:console %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalDependencies>lua5.1.lib;OpenGL32.lib;glu32.lib;sdl.lib;SDLmain.lib;sdl_image.lib;sdl_ttf.lib;Newton.lib;avutil.lib;avcodec.lib;avformat.lib;swscale.lib;cg.lib;cgGL.lib;tolua++.lib;fmodex_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)symmetry.exe</OutputFile>
+      <AdditionalLibraryDirectories>..\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <ProgramDatabaseFile>$(OutDir)tech_demo.pdb</ProgramDatabaseFile>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>C:\Development\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalDependencies>OpenGL32.lib;glu32.lib;sdl.lib;sdl_image.lib;sdl_ttf.lib;lua5.1.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <OutputFile>$(OutDir)tech_demo.exe</OutputFile>
+      <AdditionalLibraryDirectories>C:\Development\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="lua_binding\lua_matrix.cpp" />
+    <ClCompile Include="lua_binding\lua_vector.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="SYM_AABB.cpp" />
+    <ClCompile Include="SYM_Animation.cpp" />
+    <ClCompile Include="SYM_Audio.cpp" />
+    <ClCompile Include="SYM_Brush.cpp" />
+    <ClCompile Include="SYM_Camera.cpp" />
+    <ClCompile Include="SYM_Character.cpp" />
+    <ClCompile Include="SYM_Console.cpp" />
+    <ClCompile Include="SYM_Debug.cpp" />
+    <ClCompile Include="SYM_Engine.cpp" />
+    <ClCompile Include="SYM_Font.cpp" />
+    <ClCompile Include="SYM_Geometry.cpp" />
+    <ClCompile Include="SYM_Input.cpp" />
+    <ClCompile Include="SYM_Level.cpp" />
+    <ClCompile Include="SYM_Logger.cpp" />
+    <ClCompile Include="SYM_Material.cpp" />
+    <ClCompile Include="SYM_Maths.cpp" />
+    <ClCompile Include="SYM_Mesh.cpp" />
+    <ClCompile Include="SYM_Model.cpp" />
+    <ClCompile Include="SYM_MPEG.cpp" />
+    <ClCompile Include="SYM_Octree.cpp" />
+    <ClCompile Include="SYM_Physics.cpp" />
+    <ClCompile Include="SYM_PhysicsObject.cpp" />
+    <ClCompile Include="SYM_Placeable.cpp" />
+    <ClCompile Include="SYM_Quaternion.cpp" />
+    <ClCompile Include="SYM_Rope.cpp" />
+    <ClCompile Include="SYM_Scene.cpp" />
+    <ClCompile Include="SYM_Script.cpp" />
+    <ClCompile Include="SYM_SDL_GL_Utils.cpp" />
+    <ClCompile Include="SYM_Shader.cpp" />
+    <ClCompile Include="SYM_Skybox.cpp" />
+    <ClCompile Include="SYM_Sprite.cpp" />
+    <ClCompile Include="SYM_State.cpp" />
+    <ClCompile Include="SYM_Terrain.cpp" />
+    <ClCompile Include="SYM_Texture.cpp" />
+    <ClCompile Include="SYM_Timer.cpp" />
+    <ClCompile Include="tests\HoverGame.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="lua_binding\lua_matrix.h" />
+    <ClInclude Include="lua_binding\lua_vector.h" />
+    <ClInclude Include="SYM_AABB.h" />
+    <ClInclude Include="SYM_Animation.h" />
+    <ClInclude Include="SYM_Audio.h" />
+    <ClInclude Include="SYM_Brush.h" />
+    <ClInclude Include="SYM_Camera.h" />
+    <ClInclude Include="SYM_Character.h" />
+    <ClInclude Include="SYM_Console.h" />
+    <ClInclude Include="SYM_Core.h" />
+    <ClInclude Include="SYM_Debug.h" />
+    <ClInclude Include="SYM_DLL.h" />
+    <ClInclude Include="SYM_Engine.h" />
+    <ClInclude Include="SYM_Font.h" />
+    <ClInclude Include="SYM_Geometry.h" />
+    <ClInclude Include="SYM_Input.h" />
+    <ClInclude Include="SYM_Level.h" />
+    <ClInclude Include="SYM_Logger.h" />
+    <ClInclude Include="SYM_Material.h" />
+    <ClInclude Include="SYM_Maths.h" />
+    <ClInclude Include="SYM_Matrix.h" />
+    <ClInclude Include="SYM_Mesh.h" />
+    <ClInclude Include="SYM_Model.h" />
+    <ClInclude Include="SYM_MPEG.h" />
+    <ClInclude Include="SYM_Octree.h" />
+    <ClInclude Include="SYM_Physics.h" />
+    <ClInclude Include="SYM_PhysicsObject.h" />
+    <ClInclude Include="SYM_Placeable.h" />
+    <ClInclude Include="SYM_Quaternion.h" />
+    <ClInclude Include="SYM_Resource.h" />
+    <ClInclude Include="SYM_Rope.h" />
+    <ClInclude Include="SYM_Scene.h" />
+    <ClInclude Include="SYM_Script.h" />
+    <ClInclude Include="SYM_SDL_GL_Utils.h" />
+    <ClInclude Include="SYM_Shader.h" />
+    <ClInclude Include="SYM_Skybox.h" />
+    <ClInclude Include="SYM_Sprite.h" />
+    <ClInclude Include="SYM_State.h" />
+    <ClInclude Include="SYM_Terrain.h" />
+    <ClInclude Include="SYM_Texture.h" />
+    <ClInclude Include="SYM_Timer.h" />
+    <ClInclude Include="SYM_Vector.h" />
+    <ClInclude Include="tests\CharacterTest.h" />
+    <ClInclude Include="tests\HoverGame.h" />
+    <ClInclude Include="tests\MainMenuTest.h" />
+    <ClInclude Include="tests\MenuTest.h" />
+    <ClInclude Include="tests\RopeDemo.h" />
+    <ClInclude Include="VisionTest.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SCRIPTS\HUDTEST.LUA" />
+    <None Include="SCRIPTS\PHYSICSTEST.LUA" />
+    <None Include="scripts\physicstest2.lua" />
+    <None Include="SCRIPTS\PICKUP.LUA" />
+    <None Include="SCRIPTS\SYMMETRY.LUA" />
+    <None Include="SCRIPTS\TERRAIN.LUA" />
+    <None Include="SCRIPTS\test.lua" />
+    <None Include="SCRIPTS\test2.lua" />
+    <None Include="SCRIPTS\TESTSCENE.LUA" />
+    <None Include="SCRIPTS\WATERTEST.LUA" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

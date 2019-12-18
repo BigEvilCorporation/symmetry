@@ -1,0 +1,86 @@
+/*
+
+% Description of my shader.
+% Second line of description for my shader.
+
+keywords: material classic
+
+date: YYMMDD
+
+*/
+
+float4x4 WorldViewProj : WorldViewProjection;
+
+///////////////////////////////
+//Textures
+///////////////////////////////
+texture RTTTexture 
+<
+	string UIName =  "RTTTexture Texture";
+	string ResourceType = "2D";
+>;
+
+///////////////////////////////
+//Samplers
+///////////////////////////////
+sampler2D RTTSampler = sampler_state
+{
+	Texture = <RTTTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position : POSITION;
+    float4 Normal 	: NORMAL;
+	float2 UVCoord  : TEXCOORD0;
+};
+
+struct VOutput
+{
+    float4 Position : POSITION;
+	float2 UVCoord  : TEXCOORD0;
+};
+	
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = mul(WorldViewProj, IN.Position);
+	
+	//Set UVCoord
+	OUT.UVCoord = IN.UVCoord;
+	
+	return OUT;
+}
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PShader(VOutput IN) : COLOR
+{
+	float4 OutPixel = tex2D(RTTSampler, IN.UVCoord);
+	//float4 OutPixel = float4(1.0f, 1.0f, 0.0f, 1.0f);
+	return OutPixel;
+}
+
+technique Main
+{
+	pass Pass0
+	{
+		//CullFaceEnable = false;	
+		//VertexProgram = compile vp30 VShader();
+		FragmentProgram = compile fp30 PShader();
+	}
+}

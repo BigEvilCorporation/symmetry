@@ -1,0 +1,106 @@
+/*
+
+% Description of my shader.
+% Second line of description for my shader.
+
+keywords: material classic
+
+date: YYMMDD
+
+*/
+
+float4x4 WorldViewProj : WorldViewProjection;
+
+///////////////////////////////
+//Textures
+///////////////////////////////
+texture RTTTexture 
+<
+	string UIName =  "RTTTexture Texture";
+	string ResourceType = "2D";
+>;
+
+///////////////////////////////
+//Samplers
+///////////////////////////////
+sampler2D RTTSampler = sampler_state
+{
+	Texture = <RTTTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position : POSITION;
+    float4 Normal 	: NORMAL;
+	float2 UVCoord  : TEXCOORD0;
+};
+
+struct VOutput
+{
+    float4 Position : POSITION;
+	float2 UVCoord  : TEXCOORD0;
+};
+	
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = mul(WorldViewProj, IN.Position);
+	
+	//Set UVCoord
+	OUT.UVCoord = IN.UVCoord;
+	
+	return OUT;
+}
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PShader(VOutput IN) : COLOR
+{
+	float4 TexColour = tex2D(RTTSampler, IN.UVCoord);
+
+  float4 OutPixel;
+
+  if(TexColour.r>0.8)OutPixel.r=0.8;
+  else if(TexColour.r>0.6)OutPixel.r=0.6;
+  else if(TexColour.r>0.4)OutPixel.r=0.4;
+  else if(TexColour.r>0.2)OutPixel.r=0.2;
+  else OutPixel.r=0;
+
+  if(TexColour.g>0.8)OutPixel.g=0.8;
+  else if(TexColour.g>0.6)OutPixel.g=0.6;
+  else if(TexColour.g>0.4)OutPixel.g=0.4;
+  else if(TexColour.g>0.2)OutPixel.g=0.2;
+  else OutPixel.g=0;
+  
+  if(TexColour.b>0.8)OutPixel.b=0.8;
+  else if(TexColour.b>0.6)OutPixel.b=0.6;
+  else if(TexColour.b>0.4)OutPixel.b=0.4;
+  else if(TexColour.b>0.2)OutPixel.b=0.2;
+  else OutPixel.b=0;
+
+	return OutPixel;
+}
+
+technique Main
+{
+	pass Pass0
+	{
+		//CullFaceEnable = false;	
+		//VertexProgram = compile vp30 VShader();
+		FragmentProgram = compile fp30 PShader();
+	}
+}

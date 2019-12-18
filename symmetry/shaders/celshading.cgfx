@@ -1,0 +1,189 @@
+/*
+
+% Cel shader
+% Matt Phillips
+% Based on code from: http://www.gamedev.net/community/forums/topic.asp?topic_id=313392
+
+keywords: cel toon
+
+date: 8/6/08
+
+*/
+
+
+///////////////////////////////
+//Tweakables
+///////////////////////////////
+float4 Diffuse : COLOR
+<
+	string UIWidget = "Color";
+	string UIName =  "Diffuse";
+>  = {0.8f, 0.8f, 0.8f, 1.0f};
+
+float4 Specular : COLOR
+<
+	string UIWidget = "Color";
+	string UIName =  "Specular";
+>  = {0.9f, 0.9f, 0.9f, 1.0f};
+
+float Shininess
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 10.0;
+	float UIStep = 0.1;
+	string UIName =  "Shininess";
+> = 2.0;
+
+float3 LightPos : POSITION
+<
+    string UIWidget = "PointLight0";
+    string UIName =  "Light Position";
+    string Space = "World";
+> = {-0.5f, 2.0f, 1.25f};
+
+
+///////////////////////////////
+//Textures
+///////////////////////////////
+texture DiffuseTexture
+<
+	string UIName =  "Diffuse Texture";
+	string ResourceType = "1D";
+>;
+
+texture SpecularTexture
+<
+	string UIName =  "Specular Texture";
+	string ResourceType = "1D";
+>;
+
+texture EdgeTexture
+<
+	string UIName =  "Edge Texture";
+	string ResourceType = "1D";
+>;
+
+
+///////////////////////////////
+//Samplers
+///////////////////////////////
+sampler1D DiffuseSampler = sampler_state
+{
+	Texture = <DiffuseTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+sampler1D SpecularSampler = sampler_state
+{
+	Texture = <SpecularTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+sampler1D EdgeSampler = sampler_state
+{
+	Texture = <EdgeTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 World : WORLD;
+float4x4 ViewIT : VIEWINVERSETRANSPOSE;
+float3 EyePos : CAMERAPOSITION;
+
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position : POSITION;
+    float4 Normal 	: NORMAL;
+};
+
+struct VOutput
+{
+    float4 Position : POSITION;
+    float Diffuse : TEXCOORD0;
+    float Specular : TEXCOORD1;
+    float Edge : TEXCOORD2;
+};
+
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = mul(WorldViewProj, IN.Position);
+	
+	//Get eye and light positions in object space
+	float4 WorldPos = mul(World, IN.Position);
+	float4 EyeVector = -(WorldPos - ViewIT[3]);
+	LightPos = -(WorldPos - ViewIT[3]).xyz;
+	
+	//Calculate light vector
+	float3 N = normalize(IN.Normal.xyz);
+	float3 L = normalize(LightPos - IN.Position.xyz);
+	
+	//Calculate diffuse
+	OUT.Diffuse = max(dot(N, L) , 0);
+	
+	//Calculate specular
+	float3 E = normalize(EyeVector.xyz - IN.Position.xyz);
+	float3 H = normalize(L + E);
+	OUT.Specular = pow(max(dot(N, H), 0), Shininess);
+	
+	return OUT;
+}
+
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PShader(VOutput IN) : COLOR
+{
+	//Step functions from textures
+	IN.Diffuse = tex1D(DiffuseSampler, IN.Diffuse).x;
+	IN.Specular = tex1D(SpecularSampler, IN.Specular).x;
+	IN.Edge = tex1D(EdgeSampler, IN.Edge).x;
+
+	float4 Colour = IN.Edge * ((Diffuse * IN.Diffuse) + (Specular * IN.Specular));
+					
+	return Colour;
+}
+
+
+///////////////////////////////
+//Techniques
+///////////////////////////////
+technique Main
+{
+	pass p0
+	{
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = true;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+		
+		VertexProgram = compile vp40 VShader();
+		FragmentProgram = compile fp40 PShader();
+	}
+}

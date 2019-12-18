@@ -1,0 +1,227 @@
+/*
+
+% Cel shader
+% Matt Phillips
+% Based on code from: http://www.gamedev.net/community/forums/topic.asp?topic_id=313392
+
+keywords: cel toon
+
+date: 8/6/08
+
+*/
+
+
+///////////////////////////////
+//Tweakables
+///////////////////////////////
+float4 DiffuseColour
+<
+	string UIWidget = "Color";
+	string UIName =  "Diffuse Colour";
+>  = {1.0f, 1.0f, 1.0f, 1.0f};
+
+float4 SpecularColour
+<
+	string UIWidget = "Color";
+	string UIName =  "Specular Colour";
+>  = {1.0f, 1.0f, 1.0f, 1.0f};
+
+float4 EdgeColour
+<
+	string UIWidget = "Color";
+	string UIName =  "Edge Colour";
+>  = {0.0f, 0.0f, 0.0f, 1.0f};
+
+float EdgeThickness
+<
+	string UIWidget = "slider";
+	float UIMin = 0.001;
+	float UIMax = 1.0;
+	float UIStep = 0.001;
+	string UIName =  "Edge Thickness";
+> = 0.2;
+
+float Shininess
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 10.0;
+	float UIStep = 0.1;
+	string UIName =  "Shininess";
+> = 2.5;
+
+float3 LightPos
+<
+    string UIWidget = "PointLight0";
+    string UIName =  "Light Position";
+    string Space = "World";
+> = {-0.5f, 2.0f, 1.25f};
+
+float UTiling
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 50.0;
+	float UIStep = 0.1;
+	string UIName =  "U Tiling";
+> = 1.0;
+
+float VTiling
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 50.0;
+	float UIStep = 0.1;
+	string UIName =  "V Tiling";
+> = 1.0;
+
+float UOffset
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "U Offset";
+> = 0.0;
+
+float VOffset
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "V Offset";
+> = 0.0;
+	
+
+///////////////////////////////
+//Textures
+///////////////////////////////
+texture DiffuseTexture
+<
+	string UIName =  "Diffuse Texture Map";
+	string ResourceType = "2D";
+>;
+
+
+///////////////////////////////
+//Samplers
+///////////////////////////////
+sampler2D DiffuseSampler = sampler_state
+{
+	Texture = <DiffuseTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 World : WORLD;
+float4x4 ViewIT : VIEWINVERSETRANSPOSE;
+
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position : POSITION;
+    float4 Normal 	: NORMAL;
+	float2 UVCoord  : TEXCOORD0;
+};
+
+struct VOutput
+{
+    float4 Position : POSITION;
+	float2 UVCoord;
+    float Diffuse;
+    float Specular;
+    float Edge;
+};
+
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = mul(WorldViewProj, IN.Position);
+	
+	//Get eye and light positions in object space
+	float4 WorldPos = mul(World, IN.Position);
+	float4 EyeVector = -(WorldPos - ViewIT[3]);
+	LightPos = -(WorldPos - ViewIT[3]).xyz;
+	
+	//Calculate light vector
+	float3 N = normalize(IN.Normal.xyz);
+	float3 L = normalize(LightPos - IN.Position.xyz);
+	
+	//Calculate specular
+	float3 E = normalize(EyeVector.xyz - IN.Position.xyz);
+	float3 H = normalize(L + E);
+	
+	//Calculate diffuse, specular and edge values for thresholds
+	OUT.Diffuse = max(dot(N, L) , 0);
+	OUT.Specular = pow(max(dot(N, H), 0), Shininess);
+	OUT.Edge = max(dot(N, E), 0) * (1.0 - EdgeThickness);
+	
+	//Set UVCoord
+	OUT.UVCoord.x = IN.UVCoord.x * UTiling + UOffset;
+	OUT.UVCoord.y = IN.UVCoord.y * VTiling + VOffset;
+	
+	return OUT;
+}
+
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PShader(VOutput IN) : COLOR
+{
+	//Get colour value from diffuse texture
+	float4 DiffuseOut = tex2D(DiffuseSampler, IN.UVCoord);
+	
+	//All colours are initially white
+	float4 DiffuseCelOut = float4(1.0f, 1.0f, 1.0f, 0.0f);
+	float4 SpecularCelOut = float4(1.0f, 1.0f, 1.0f, 0.0f);
+	float4 EdgeCelOut = float4(1.0f, 1.0f, 1.0f, 0.0f);
+	
+	//If thresholds have been reached, set colours
+	if(IN.Diffuse < EdgeThickness) DiffuseCelOut = float4(1.0f, 1.0f, 1.0f, 0.0f);
+	if(IN.Specular < EdgeThickness) SpecularCelOut = float4(0.1f, 0.1f, 0.1f, 0.0f);
+	if(IN.Edge < EdgeThickness) EdgeCelOut = EdgeColour;
+
+	//Calculate pixel colour
+	float4 Colour = EdgeCelOut * ((DiffuseColour * DiffuseCelOut) + (SpecularColour * SpecularCelOut)) * DiffuseOut;
+					
+	return Colour;
+}
+
+
+///////////////////////////////
+//Techniques
+///////////////////////////////
+technique Main
+{
+	pass p0
+	{
+		VertexProgram = compile vp40 VShader();
+		
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = true;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+		
+		FragmentProgram = compile fp30 PShader();
+	}
+}

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="Symmetry" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="Debug">
+				<Option platforms="Unix;" />
+				<Option output="Debug/symmetry" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Debug" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-W" />
+					<Add option="-g" />
+					<Add option="-O0" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="C:/Development/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add library="lua" />
+					<Add library="GL" />
+					<Add library="GLU" />
+					<Add library="SDL" />
+					<Add library="SDL_image" />
+					<Add library="SDL_ttf" />
+					<Add library="Newton" />
+					<Add library="avutil" />
+					<Add library="avcodec" />
+					<Add library="avformat" />
+					<Add library="swscale" />
+					<Add library="Cg" />
+					<Add library="CgGL" />
+					<Add library="tolua++" />
+					<Add directory="C:/Development/lib" />
+				</Linker>
+			</Target>
+			<Target title="Release">
+				<Option platforms="Unix;" />
+				<Option output="Release/symmetry" prefix_auto="1" extension_auto="1" />
+				<Option object_output="Release" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-W" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="C:/Development/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add library="OpenGL32" />
+					<Add library="glu32" />
+					<Add library="sdl" />
+					<Add library="sdl_image" />
+					<Add library="sdl_ttf" />
+					<Add library="lua5.1" />
+					<Add directory="C:/Development/lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<Unit filename="SCRIPTS/HUDTEST.LUA" />
+		<Unit filename="SCRIPTS/PHYSICSTEST.LUA" />
+		<Unit filename="SCRIPTS/PICKUP.LUA" />
+		<Unit filename="SCRIPTS/SYMMETRY.LUA" />
+		<Unit filename="SCRIPTS/TERRAIN.LUA" />
+		<Unit filename="SCRIPTS/TESTSCENE.LUA" />
+		<Unit filename="SCRIPTS/WATERTEST.LUA" />
+		<Unit filename="SCRIPTS/test.lua" />
+		<Unit filename="SCRIPTS/test2.lua" />
+		<Unit filename="SYM_3DMaths.cpp" />
+		<Unit filename="SYM_3DMaths.h" />
+		<Unit filename="SYM_AABB.cpp" />
+		<Unit filename="SYM_AABB.h" />
+		<Unit filename="SYM_Brush.cpp" />
+		<Unit filename="SYM_Brush.h" />
+		<Unit filename="SYM_Camera.cpp" />
+		<Unit filename="SYM_Camera.h" />
+		<Unit filename="SYM_Console.cpp" />
+		<Unit filename="SYM_Console.h" />
+		<Unit filename="SYM_Debug.cpp" />
+		<Unit filename="SYM_Debug.h" />
+		<Unit filename="SYM_Engine.cpp" />
+		<Unit filename="SYM_Engine.h" />
+		<Unit filename="SYM_Font.cpp" />
+		<Unit filename="SYM_Font.h" />
+		<Unit filename="SYM_Geometry.cpp" />
+		<Unit filename="SYM_Geometry.h" />
+		<Unit filename="SYM_Input.cpp" />
+		<Unit filename="SYM_Input.h" />
+		<Unit filename="SYM_Level.cpp" />
+		<Unit filename="SYM_Level.h" />
+		<Unit filename="SYM_Logger.cpp" />
+		<Unit filename="SYM_Logger.h" />
+		<Unit filename="SYM_MPEG.cpp" />
+		<Unit filename="SYM_MPEG.h" />
+		<Unit filename="SYM_Material.cpp" />
+		<Unit filename="SYM_Material.h" />
+		<Unit filename="SYM_Mesh.cpp" />
+		<Unit filename="SYM_Mesh.h" />
+		<Unit filename="SYM_Model.cpp" />
+		<Unit filename="SYM_Model.h" />
+		<Unit filename="SYM_Octree.cpp" />
+		<Unit filename="SYM_Octree.h" />
+		<Unit filename="SYM_Physics.cpp" />
+		<Unit filename="SYM_Physics.h" />
+		<Unit filename="SYM_PhysicsObject.cpp" />
+		<Unit filename="SYM_PhysicsObject.h" />
+		<Unit filename="SYM_Placeable.cpp" />
+		<Unit filename="SYM_Placeable.h" />
+		<Unit filename="SYM_Resource.h" />
+		<Unit filename="SYM_Rope.cpp" />
+		<Unit filename="SYM_Rope.h" />
+		<Unit filename="SYM_SDL_GL_Utils.cpp" />
+		<Unit filename="SYM_SDL_GL_Utils.h" />
+		<Unit filename="SYM_Scene.cpp" />
+		<Unit filename="SYM_Scene.h" />
+		<Unit filename="SYM_Script.cpp" />
+		<Unit filename="SYM_Script.h" />
+		<Unit filename="SYM_Shader.cpp" />
+		<Unit filename="SYM_Shader.h" />
+		<Unit filename="SYM_Skybox.cpp" />
+		<Unit filename="SYM_Skybox.h" />
+		<Unit filename="SYM_Sprite.cpp" />
+		<Unit filename="SYM_Sprite.h" />
+		<Unit filename="SYM_Terrain.cpp" />
+		<Unit filename="SYM_Terrain.h" />
+		<Unit filename="SYM_Texture.cpp" />
+		<Unit filename="SYM_Texture.h" />
+		<Unit filename="SYM_Timer.cpp" />
+		<Unit filename="SYM_Timer.h" />
+		<Unit filename="lua_binding/lua_matrix.cpp" />
+		<Unit filename="lua_binding/lua_matrix.h" />
+		<Unit filename="lua_binding/lua_vector.cpp" />
+		<Unit filename="lua_binding/lua_vector.h" />
+		<Unit filename="main.cpp" />
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

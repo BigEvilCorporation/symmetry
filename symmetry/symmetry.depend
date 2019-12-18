@@ -1,0 +1,430 @@
+# depslib dependency file v1.0
+1216563540 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_3DMaths.cpp
+	<windows.h>
+	<iostream>
+	<math.h>
+	<float.h>
+	<stdlib.h>
+	"SYM_Engine.h"
+	"SYM_3DMaths.h"
+
+1217691465 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Engine.h
+	<windows.h>
+	<SDL/SDL.h>
+	<string>
+	<GL/gl.h>
+	<GL/glext.h>
+	"SYM_3DMaths.h"
+	"SYM_Debug.h"
+	"SYM_Camera.h"
+	"SYM_Console.h"
+	"SYM_Font.h"
+	"SYM_Geometry.h"
+	"SYM_Input.h"
+	"SYM_Level.h"
+	"SYM_Logger.h"
+	"SYM_Material.h"
+	"SYM_Mesh.h"
+	"SYM_MPEG.h"
+	"SYM_Octree.h"
+	"SYM_Physics.h"
+	"SYM_Resource.h"
+	"SYM_Scene.h"
+	"SYM_Sprite.h"
+	"SYM_Script.h"
+	"SYM_SDL_GL_Utils.h"
+	"SYM_Shader.h"
+	"SYM_Skybox.h"
+	"SYM_Terrain.h"
+	"SYM_Texture.h"
+	"SYM_Timer.h"
+
+1216154241 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_3DMaths.h
+	<windows.h>
+	<cassert>
+	<iostream>
+	<vector>
+	<GL/gl.h>
+
+1211593798 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Debug.h
+	<sstream>
+	"SYM_Font.h"
+
+1211593798 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Font.h
+	<windows.h>
+	<GL/gl.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	<SDL/SDL_ttf.h>
+	<string>
+	<vector>
+	<map>
+	"SYM_3DMaths.h"
+	"SYM_Texture.h"
+
+1217190422 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Texture.h
+	<windows.h>
+	<stdlib.h>
+	<stdio.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glext.h>
+	<SDL/SDL.h>
+	<SDL/SDL_image.h>
+	<vector>
+	<string>
+
+1214626702 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Camera.h
+	"SYM_Placeable.h"
+
+1214530123 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Console.h
+	<windows.h>
+	<sstream>
+	<string>
+	<vector>
+	<deque>
+	"SYM_Font.h"
+	"SYM_Texture.h"
+
+1217693700 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Geometry.h
+	<vector>
+	"SYM_PhysicsObject.h"
+	"SYM_3DMaths.h"
+	"SYM_Mesh.h"
+
+1217693553 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Mesh.h
+	<string>
+	<vector>
+	"SYM_Material.h"
+	"SYM_3DMaths.h"
+	"SYM_AABB.h"
+
+1216682590 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Material.h
+	"SYM_Shader.h"
+	"SYM_Texture.h"
+	"SYM_MPEG.h"
+
+1216739463 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Shader.h
+	<Cg/cg.h>
+	<Cg/cgGL.h>
+	<string>
+	<map>
+	"SYM_Texture.h"
+
+1216856123 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_MPEG.h
+	<windows.h>
+	<GL/gl.h>
+	<SDL/SDL.h>
+	<string>
+	"SYM_Texture.h"
+	<ffmpeg/avcodec.h>
+	<ffmpeg/avformat.h>
+	<ffmpeg/swscale.h>
+	<libavcodec/avcodec.h>
+	<libavformat/avformat.h>
+	<libswscale/swscale.h>
+	"SYM_Timer.h"
+
+1213729628 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Timer.h
+	<SDL/SDL.h>
+
+1217691045 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Physics.h
+	<windows.h>
+	<GL/gl.h>
+	<vector>
+	<newton/Newton.h>
+	"SYM_3DMaths.h"
+	"SYM_AABB.h"
+	"SYM_Material.h"
+
+1214874667 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Input.h
+	<SDL/SDL.h>
+
+1214427080 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Resource.h
+	<string>
+	<map>
+	"SYM_Engine.h"
+
+1217693974 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Scene.h
+	<map>
+	"SYM_AABB.h"
+	"SYM_Brush.h"
+	"SYM_Level.h"
+	"SYM_Model.h"
+	"SYM_Octree.h"
+	"SYM_Physics.h"
+	"SYM_Shader.h"
+	"SYM_Skybox.h"
+	"SYM_Terrain.h"
+	"SYM_Texture.h"
+
+1217693974 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Brush.h
+	"SYM_Geometry.h"
+	"SYM_Mesh.h"
+
+1217683741 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Model.h
+	"SYM_Geometry.h"
+
+1217602642 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Skybox.h
+	<windows.h>
+	<GL/gl.h>
+	<map>
+	"SYM_Texture.h"
+	"SYM_Level.h"
+
+1214669020 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Terrain.h
+	<windows.h>
+	<iostream>
+	<string>
+	<vector>
+	<GL/gl.h>
+	<GL/glu.h>
+	"SYM_Geometry.h"
+
+1217694032 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Script.h
+	<lua.h>
+	<lualib.h>
+	<lauxlib.h>
+	<iostream>
+	<string>
+	<map>
+	<vector>
+	"tolua++.h"
+	"lua_binding/lua_vector.h"
+	"lua_binding/lua_matrix.h"
+
+1217190422 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_SDL_GL_Utils.h
+	<windows.h>
+	<GL/gl.h>
+	<GL/glu.h>
+	<GL/glext.h>
+	<SDL/SDL.h>
+
+1217693974 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Brush.cpp
+	<math.h>
+	"SYM_Brush.h"
+	"SYM_AABB.h"
+	"SYM_Geometry.h"
+	"SYM_Engine.h"
+
+1214626824 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Camera.cpp
+	<windows.h>
+	<GL/gl.h>
+	<math.h>
+	"SYM_Camera.h"
+
+1214871093 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Console.cpp
+	<iomanip>
+	"SYM_Console.h"
+	"SYM_Engine.h"
+	"SYM_SDL_GL_Utils.h"
+	"SYM_Texture.h"
+	"SYM_Timer.h"
+
+1214624067 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Debug.cpp
+	"SYM_Debug.h"
+	"SYM_Octree.h"
+	"SYM_Engine.h"
+
+1217702621 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Engine.cpp
+	"SYM_Engine.h"
+
+1215616058 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Font.cpp
+	<algorithm>
+	"SYM_Font.h"
+	"SYM_Engine.h"
+
+1217693700 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Geometry.cpp
+	<windows.h>
+	<stdlib.h>
+	<algorithm>
+	<GL/gl.h>
+	"SYM_Geometry.h"
+	"SYM_Mesh.h"
+
+1214874667 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Input.cpp
+	"SYM_Input.h"
+	"SYM_Engine.h"
+
+1214530211 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_MPEG.cpp
+	<algorithm>
+	"SYM_MPEG.h"
+	"SYM_Engine.h"
+
+1216740277 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Material.cpp
+	"SYM_Material.h"
+	"SYM_Engine.h"
+
+1217693553 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Mesh.cpp
+	<sstream>
+	"SYM_Mesh.h"
+	"SYM_Shader.h"
+	"SYM_Engine.h"
+
+1217683741 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Model.cpp
+	"SYM_Model.h"
+	"SYM_Engine.h"
+
+1217625294 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Physics.cpp
+	<sstream>
+	"SYM_Physics.h"
+	"SYM_3DMaths.h"
+	"SYM_Engine.h"
+
+1216146849 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_SDL_GL_Utils.cpp
+	<iostream>
+	"SYM_SDL_GL_Utils.h"
+	"SYM_Font.h"
+	"SYM_Engine.h"
+
+1217693974 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Scene.cpp
+	<algorithm>
+	<cstdlib>
+	<iostream>
+	<fstream>
+	"SYM_Scene.h"
+	"SYM_Level.h"
+	"SYM_Engine.h"
+
+1217694031 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Script.cpp
+	<algorithm>
+	"SYM_Script.h"
+	"SYM_3DMaths.h"
+	"SYM_Engine.h"
+	<stdarg.h>
+
+1216739565 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Shader.cpp
+	<iostream>
+	"SYM_Shader.h"
+	"SYM_Engine.h"
+
+1217603852 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Skybox.cpp
+	"SYM_Skybox.h"
+	"SYM_Engine.h"
+
+1217190422 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Terrain.cpp
+	"SYM_Terrain.h"
+	"SYM_Engine.h"
+	"SYM_Texture.h"
+	"SYM_3DMaths.h"
+	<sstream>
+
+1217190422 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Texture.cpp
+	<windows.h>
+	<iostream>
+	"SYM_Texture.h"
+	"SYM_Engine.h"
+
+1213729705 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Timer.cpp
+	"SYM_Timer.h"
+
+1217701972 source:/home/matt/storage/development/cvg3/codebase/symmetry/main.cpp
+	<windows.h>
+	"SYM_Engine.h"
+	"SYM_Rope.h"
+
+1214427218 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Logger.h
+	<iostream>
+	<fstream>
+	<string>
+
+1214427218 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Logger.cpp
+	<time.h>
+	"SYM_Logger.h"
+	"SYM_Engine.h"
+
+1216910350 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Octree.h
+	<string>
+	<vector>
+	<list>
+	<map>
+	"SYM_3DMaths.h"
+	"SYM_Mesh.h"
+	"SYM_AABB.h"
+
+1217190422 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Octree.cpp
+	<sstream>
+	<algorithm>
+	"SYM_Octree.h"
+	"SYM_Engine.h"
+
+1212075887 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_AABB.h
+	"SYM_3DMaths.h"
+
+1213991978 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_AABB.cpp
+	"SYM_AABB.h"
+
+1217602642 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Level.h
+	<iostream>
+	<string>
+	<vector>
+	"SYM_Material.h"
+	"SYM_Geometry.h"
+	"SYM_Model.h"
+	"SYM_Brush.h"
+	<GL/gl.h>
+	<GL/glu.h>
+
+1217698666 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Level.cpp
+	"SYM_Level.h"
+	"SYM_Engine.h"
+
+1214530083 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Sprite.h
+	<string>
+	<map>
+	"SYM_3DMaths.h"
+	"SYM_Texture.h"
+
+1214530260 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Sprite.cpp
+	"SYM_Sprite.h"
+	"SYM_Engine.h"
+
+1217683742 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_PhysicsObject.h
+	"SYM_Placeable.h"
+	"SYM_Physics.h"
+
+1216911957 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Placeable.h
+	<string>
+	"SYM_3DMaths.h"
+	"SYM_Octree.h"
+
+1217683742 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_PhysicsObject.cpp
+	"SYM_PhysicsObject.h"
+
+1216912051 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Placeable.cpp
+	<math.h>
+	"SYM_Placeable.h"
+
+1216066098 /home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/lua_vector.h
+
+1216066098 source:/home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/lua_vector.cpp
+	"stdlib.h"
+	"string.h"
+	"tolua++.h"
+	"vector.h"
+
+1216066084 /home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/vector.h
+	<math.h>
+
+1216066097 /home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/lua_matrix.h
+
+1216066097 source:/home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/lua_matrix.cpp
+	"stdlib.h"
+	"string.h"
+	"tolua++.h"
+	"matrix.h"
+
+1216066091 /home/matt/storage/development/cvg3/codebase/symmetry/lua_binding/matrix.h
+	"vector.h"
+
+1217702371 source:/home/matt/storage/development/cvg3/codebase/symmetry/SYM_Rope.cpp
+	"SYM_Rope.h"
+
+1217695956 /home/matt/storage/development/cvg3/codebase/symmetry/SYM_Rope.h
+	<vector>
+	<string>
+	<sstream>
+	<newton/Newton.h>
+	"SYM_Engine.h"
+	"SYM_Geometry.h"
+

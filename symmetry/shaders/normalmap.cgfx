@@ -1,0 +1,212 @@
+/*
+
+% Normal Mapping
+% Matt Phillips
+% Based on code from NVIDIA Shader Library
+
+keywords: normal bump map
+
+date: 8/6/08
+
+*/
+
+///////////////////////////////
+//Tweakables
+///////////////////////////////
+float3 LightPos : POSITION
+<
+    string UIWidget = "PointLight0";
+    string UIName =  "Light Position";
+    string Space = "World";
+> = {-0.5f,2.0f,1.25f};
+
+float UVTile
+<
+    string UIName = "UV Tiling";
+    string UIWidget = "slider";
+    float UIMin = 1.0;
+    float UIStep = 1.0;
+    float UIMax = 32.0;
+> = 1;
+
+float3 Ambient
+<
+    string UIName = "Ambient";
+    string UIWidget = "color";
+> = {0.2,0.2,0.2};
+
+float3 Diffuse
+<
+    string UIName = "Diffuse";
+    string UIWidget = "color";
+> = {1,1,1};
+
+float3 Specular
+<
+    string UIName = "Specular";
+    string UIWidget = "color";
+> = {0.75,0.75,0.75};
+
+float PhongExp
+<
+    string UIName = "Phong Exponent";
+    string UIWidget = "slider";
+    float UIMin = 8.0f;
+    float UIStep = 8;
+    float UIMax = 256.0f;
+> = 128.0;
+
+
+///////////////////////////////
+//Textures
+///////////////////////////////
+texture DiffuseTexture : DIFFUSE
+<
+    string UIName =  "Diffuse Texture";
+    string ResourceType = "2D";
+>;
+
+texture NormalMapTexture : NORMAL
+<
+    string UIName =  "Normal Map Texture";
+    string ResourceType = "2D";
+>;
+
+
+///////////////////////////////
+//Samplers
+///////////////////////////////
+sampler2D DiffuseSampler = sampler_state
+{
+    Texture = <DiffuseTexture>;
+    MinFilter = LinearMipMapLinear;
+    MagFilter = Linear;
+    WrapS = Repeat;
+    WrapT = Repeat;
+};
+
+sampler2D NormalMapSampler = sampler_state
+{
+    Texture = <NormalMapTexture>;
+    MinFilter = LinearMipMapLinear;
+    MagFilter = Linear;
+    WrapS = Repeat;
+    WrapT = Repeat;
+};
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldIT : WORLDINVERSETRANSPOSE;
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 World : WORLD;
+float4x4 ViewInverse : VIEWINVERSE;
+float4x4 View : VIEW;
+float4x4 WorldView: WORLDVIEW;
+
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position	: POSITION;
+    float4 Colour	: COLOR0;
+    float3 Normal	: NORMAL;
+    float2 UVCoord	: TEXCOORD0;
+    float3 Tangent	: TANGENT0;
+    float3 Binormal	: BINORMAL0;
+};
+
+struct VOutput
+{
+    float4 HPosition	: POSITION;
+    float2 UVCoord		: TEXCOORD0;
+    float3 VPosition	: TEXCOORD1;
+    float3 Tangent		: TEXCOORD2;
+    float3 Binormal		: TEXCOORD3;
+    float3 Normal		: TEXCOORD4;
+    float4 LightPos		: TEXCOORD5;
+    float4 Colour		: COLOR0;
+};
+
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+    //Get WorldView rotation
+    float3x3 ModelViewRot;
+    ModelViewRot[0] = WorldView[0].xyz;
+    ModelViewRot[1] = WorldView[1].xyz;
+    ModelViewRot[2] = WorldView[2].xyz;
+	
+    float4 Po = float4(IN.Position.xyz, 1.0);
+    OUT.HPosition = mul(WorldViewProj, Po);
+	
+    //Vertex position in view space (with model transformations)
+    OUT.VPosition = mul(WorldView, Po).xyz;
+	
+    //Light position in view space
+    float4 Lw = float4(LightPos.xyz, 1.0);
+    OUT.LightPos = mul(View, Lw);
+	
+    //Tangent space vectors in view space (with model transformations)
+    OUT.Tangent = mul(ModelViewRot, IN.Tangent);
+    OUT.Binormal = mul(ModelViewRot, IN.Binormal);
+    OUT.Normal = mul(ModelViewRot, IN.Normal);
+	
+    //Copy colour and texture coordinates
+    OUT.Colour = IN.Colour; // currently ignored by all techniques
+    OUT.UVCoord = UVTile * IN.UVCoord.xy;
+	
+    return OUT;
+}
+
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PShader(VOutput IN) : COLOR
+{
+	float3 tNorm = tex2D(NormalMapSampler, IN.UVCoord).xyz - float3(0.5, 0.5, 0.5);
+	
+    //Transform tNorm to world space
+    tNorm = normalize(tNorm.x * IN.Tangent - tNorm.y * IN.Binormal + tNorm.z * IN.Normal);
+    float3 texCol = tex2D(DiffuseSampler, IN.UVCoord).xyz;
+	
+    //View and light directions
+    float3 Vn = normalize(IN.VPosition);
+    float3 Ln = normalize(IN.LightPos.xyz - IN.VPosition);
+	
+    //Compute diffuse and specular terms
+    float Attenuation = saturate(dot(Ln, IN.Normal));
+    float Diff = saturate(dot(Ln, tNorm));
+    float Spec = saturate(dot(normalize(Ln-Vn), tNorm));
+    Spec = pow(Spec, PhongExp);
+	
+    //Compute final color
+    float3 Colour = Ambient * texCol + 
+					Attenuation * (texCol * Diffuse.xyz * Diff + Specular * Spec);
+					
+    return float4(Colour.rgb, 1.0);
+}
+
+technique Main
+{
+	pass p0
+	{
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = false;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+		
+		VertexProgram = compile vp40 VShader();
+		FragmentProgram = compile fp40 PShader();
+	}
+}

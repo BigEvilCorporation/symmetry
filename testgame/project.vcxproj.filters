@@ -1,0 +1,512 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\Weaponry">
+      <UniqueIdentifier>{3a6ec978-5fec-4f4b-9f7c-b3175c20c688}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Character">
+      <UniqueIdentifier>{46a9e3f5-a4a5-4ae5-8da8-cb8e154c23ae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{943279ae-a8a0-4123-93f5-91ff56978e70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\States">
+      <UniqueIdentifier>{1ab3bd5f-e4a6-4424-bd3d-bdeb0692ce40}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Dev toys and tests">
+      <UniqueIdentifier>{17fa0538-9ded-48b5-9a55-be64752ac5cf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Pickups">
+      <UniqueIdentifier>{44593310-26b9-463b-93f5-8ff00cc56da5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUI">
+      <UniqueIdentifier>{8b290e12-5118-4c8c-af9f-ec9343880915}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\Weaponry">
+      <UniqueIdentifier>{5143691a-7c97-4aff-b328-63b0212177be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Character">
+      <UniqueIdentifier>{c832659c-fc38-48f4-8e57-a2ab9ab4a5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{0a6af715-1496-424e-aab3-7a547551e652}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\States">
+      <UniqueIdentifier>{c24596d4-6a80-4fd3-b3a9-7f8ebedf5a78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Dev toys and tests">
+      <UniqueIdentifier>{99c4d4f7-8e04-427c-ae36-cba1eded76c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Pickups">
+      <UniqueIdentifier>{a26c5fc2-4682-4af1-829b-1aebae35161f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GUI">
+      <UniqueIdentifier>{d3c55039-c8a1-4c89-92ca-2f1aa1f41205}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="Engine headers">
+      <UniqueIdentifier>{b763aea8-e604-4b27-93d1-a3622a0941d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine headers\Lua binding headers">
+      <UniqueIdentifier>{4f3e9a8e-5845-4e4e-b667-09dcf956a0c8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine headers\NewtonUtils">
+      <UniqueIdentifier>{7c1c850e-1acf-4a8b-bbcc-0970272c6986}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine source">
+      <UniqueIdentifier>{d2496ccf-c5f1-4d6e-abfe-af6ecdeef8b5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine source\Lua binding source">
+      <UniqueIdentifier>{fb02c420-95ba-4bc0-84a4-4a96c3d79e99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine source\NewtonUtils">
+      <UniqueIdentifier>{ef184b20-64ae-48b6-b93d-4ebf04263414}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shaders">
+      <UniqueIdentifier>{c73d5041-1566-409c-942e-a938c8028257}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Explosion.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileBase.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="ProjectileSeek.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponBase.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponGrappleGun.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponLaser.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponMiniTurret.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponRocketLauncher.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponRocketTurret.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponTurretGun.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="WeaponTurretLauncher.cpp">
+      <Filter>Source Files\Weaponry</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterBase.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="CharacterPlayer.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="EnemyBase.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Source Files\Character</Filter>
+    </ClCompile>
+    <ClCompile Include="Game.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Level.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Scripting.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Hacking.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="IntroVideos.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelect.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\States</Filter>
+    </ClCompile>
+    <ClCompile Include="Playground.cpp">
+      <Filter>Source Files\Dev toys and tests</Filter>
+    </ClCompile>
+    <ClCompile Include="VideoBoard.cpp">
+      <Filter>Source Files\Dev toys and tests</Filter>
+    </ClCompile>
+    <ClCompile Include="PickupBase.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="PickupGrappleGun.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="PickupRocketLauncher.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="PickupRocketTurretRemote.cpp">
+      <Filter>Source Files\Pickups</Filter>
+    </ClCompile>
+    <ClCompile Include="HUD.cpp">
+      <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_AABB.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Animation.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Audio.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Brush.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Camera.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Character.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Console.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Engine.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Font.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Geometry.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Input.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Logger.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Material.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Maths.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Mesh.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Model.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_MPEG.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Octree.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Physics.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_PhysicsObject.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Placeable.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Quaternion.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Rope.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Scene.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Script.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_SDL_GL_Utils.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Shader.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Skybox.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Sprite.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_State.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Terrain.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Texture.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Timer.cpp">
+      <Filter>Engine source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\lua_binding\lua_matrix.cpp">
+      <Filter>Engine source\Lua binding source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\lua_binding\lua_vector.cpp">
+      <Filter>Engine source\Lua binding source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\dependencies\include\newton\minimalMath\dMatrix.cpp">
+      <Filter>Engine source\NewtonUtils</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\codebase\symmetry\NewtonUtils\NewtonCharacterController.cpp">
+      <Filter>Engine source\NewtonUtils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Explosion.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileBase.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="ProjectileSeek.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponBase.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponGrappleGun.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponLaser.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponMiniTurret.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponRocketLauncher.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponRocketTurret.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponTurretGun.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="WeaponTurretLauncher.h">
+      <Filter>Header Files\Weaponry</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterBase.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="CharacterPlayer.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyBase.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Header Files\Character</Filter>
+    </ClInclude>
+    <ClInclude Include="Game.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Level.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Scripting.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Spawn.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Hacking.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="IntroVideos.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelect.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Header Files\States</Filter>
+    </ClInclude>
+    <ClInclude Include="Playground.h">
+      <Filter>Header Files\Dev toys and tests</Filter>
+    </ClInclude>
+    <ClInclude Include="VideoBoard.h">
+      <Filter>Header Files\Dev toys and tests</Filter>
+    </ClInclude>
+    <ClInclude Include="PickupBase.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="PickupGrappleGun.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="PickupRocketLauncher.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="PickupRocketTurretRemote.h">
+      <Filter>Header Files\Pickups</Filter>
+    </ClInclude>
+    <ClInclude Include="HUD.h">
+      <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_AABB.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Animation.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Audio.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Brush.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Camera.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Character.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Console.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Core.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Engine.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Font.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Geometry.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Input.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Logger.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Material.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Maths.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Matrix.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Mesh.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Model.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_MPEG.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Octree.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Physics.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_PhysicsObject.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Placeable.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Quaternion.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Resource.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Rope.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Scene.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Script.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_SDL_GL_Utils.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Shader.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Skybox.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Sprite.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_State.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Terrain.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Texture.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Timer.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Vector.h">
+      <Filter>Engine headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\lua_matrix.h">
+      <Filter>Engine headers\Lua binding headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\lua_vector.h">
+      <Filter>Engine headers\Lua binding headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\matrix.h">
+      <Filter>Engine headers\Lua binding headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\vector.h">
+      <Filter>Engine headers\Lua binding headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\codebase\symmetry\NewtonUtils\NewtonCharacterController.h">
+      <Filter>Engine headers\NewtonUtils</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\post_bloom.cgfx">
+      <Filter>Shaders</Filter>
+    </None>
+  </ItemGroup>
+</Project>

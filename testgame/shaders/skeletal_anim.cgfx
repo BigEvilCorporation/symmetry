@@ -1,0 +1,110 @@
+/*
+
+% Skeletal animation vertex shader
+% SYMMETRY ENGINE
+
+Matt Phillips (c) 2008, 2009
+
+date: 31/08/08
+
+*/
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 BoneMatrices[50];
+
+///////////////////////////////
+//Textures/Samplers
+///////////////////////////////
+
+texture DiffuseTexture
+<
+	string UIName =  "NAME Texture";
+	string ResourceType = "2D";
+>;
+
+sampler2D DiffuseSampler = sampler_state
+{
+	Texture = <DiffuseTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+	
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+	float3 Position	: POSITION;
+	float3 Normal	: NORMAL;
+	float2 UVCoord	: TEXCOORD0;
+	float4 BoneIDs	: TEXCOORD1;
+	float4 Weight	: TEXCOORD2;
+};
+
+struct VOutput
+{
+	float4 Position	: POSITION;
+	//float3 Normal	: NORMAL;
+	float2 UVCoord	: TEXCOORD0;
+};
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VShader(VInput Input)
+{
+	float4 NetPosition = { 0.0f, 0.0f, 0.0f, 0.0f };
+	
+	for(int i = 0; i < 4; i++)
+	{
+		if(Input.BoneIDs[i] >= 0)
+		{
+			NetPosition += Input.Weight[i] * mul(BoneMatrices[Input.BoneIDs[i]], float4(Input.Position, 1.0f));
+		}
+	}
+	
+	VOutput Output;
+	
+	if(NetPosition.x == 0.0f && NetPosition.y == 0.0f && NetPosition.z == 0.0f)
+	{
+		Output.Position = mul(WorldViewProj, float4(Input.Position, 1.0f));
+	}
+	else
+	{
+		Output.Position = mul(WorldViewProj, NetPosition);
+	}
+	
+	Output.UVCoord = Input.UVCoord;
+	//Output.Normal = Input.Normal;
+	
+	return Output;
+}
+
+float4 PShader(VOutput Input) : COLOR0
+{
+	float2 UVCoord = Input.UVCoord;
+	//UVCoord.x = -UVCoord.x;
+	UVCoord.y = -UVCoord.y;
+	
+	float4 Diffuse = tex2D(DiffuseSampler, UVCoord);
+	
+	return Diffuse;
+}
+
+///////////////////////////////
+//Techniques
+///////////////////////////////
+technique technique0
+{
+	pass p0
+	{
+		VertexProgram = compile vp30 VShader();
+		FragmentProgram = compile fp30 PShader();
+	}
+}

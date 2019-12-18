@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{FAAA0000-5C2C-4276-A518-3A9A433F1C06}</ProjectGuid>
+    <RootNamespace>project</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>15.0.28307.799</_ProjectFileVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>..\..\..\codebase\dependencies\include\Newton\minimalMath;..\..\..\codebase\dependencies\include\Newton\customJoints;..\..\..\codebase\dependencies\include\Newton\containers;..\..\..\codebase\symmetry;..\..\..\codebase\dependencies\include\LUA;..\..\..\codebase\dependencies\include\Newton;..\..\..\codebase\dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <UndefinePreprocessorDefinitions>UNICODE _UNICODE;%(UndefinePreprocessorDefinitions)</UndefinePreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <AdditionalOptions>/verbose:lib %(AdditionalOptions)</AdditionalOptions>
+      <AdditionalLibraryDirectories>..\..\..\codebase\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <EntryPointSymbol />
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>..\..\..\codebase\dependencies\include\Newton\containers;..\..\..\codebase\symmetry;..\..\..\codebase\dependencies\include\LUA;..\..\..\codebase\dependencies\include\Newton\customJoints;..\..\..\codebase\dependencies\include\Newton\minimalMath;..\..\..\codebase\dependencies\include;..\..\..\codebase\dependencies\include\Newton;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <PrecompiledHeader />
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <Link>
+      <AdditionalLibraryDirectories>..\..\..\codebase\dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Console</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\codebase\dependencies\include\newton\minimalMath\dMatrix.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\lua_binding\lua_matrix.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\lua_binding\lua_vector.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\NewtonUtils\NewtonCharacterController.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_AABB.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Animation.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Audio.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Brush.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Camera.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Character.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Console.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Engine.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Font.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Geometry.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Input.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Logger.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Material.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Maths.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Mesh.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Model.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_MPEG.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Octree.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Physics.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_PhysicsObject.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Placeable.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Quaternion.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Rope.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Scene.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Script.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_SDL_GL_Utils.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Shader.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Skybox.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Sprite.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_State.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Terrain.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Texture.cpp" />
+    <ClCompile Include="..\..\..\codebase\symmetry\SYM_Timer.cpp" />
+    <ClCompile Include="CharacterBase.cpp" />
+    <ClCompile Include="CharacterPlayer.cpp" />
+    <ClCompile Include="EnemyBase.cpp" />
+    <ClCompile Include="Explosion.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Hacking.cpp" />
+    <ClCompile Include="HUD.cpp" />
+    <ClCompile Include="IntroVideos.cpp" />
+    <ClCompile Include="Inventory.cpp" />
+    <ClCompile Include="Level.cpp" />
+    <ClCompile Include="LevelSelect.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="PickupBase.cpp" />
+    <ClCompile Include="PickupGrappleGun.cpp" />
+    <ClCompile Include="PickupRocketLauncher.cpp" />
+    <ClCompile Include="PickupRocketTurretRemote.cpp" />
+    <ClCompile Include="Playground.cpp" />
+    <ClCompile Include="ProjectileBase.cpp" />
+    <ClCompile Include="ProjectileSeek.cpp" />
+    <ClCompile Include="Scripting.cpp" />
+    <ClCompile Include="VideoBoard.cpp" />
+    <ClCompile Include="WeaponBase.cpp" />
+    <ClCompile Include="WeaponGrappleGun.cpp" />
+    <ClCompile Include="WeaponLaser.cpp" />
+    <ClCompile Include="WeaponMiniTurret.cpp" />
+    <ClCompile Include="WeaponRocketLauncher.cpp" />
+    <ClCompile Include="WeaponRocketTurret.cpp" />
+    <ClCompile Include="WeaponTurretGun.cpp" />
+    <ClCompile Include="WeaponTurretLauncher.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\lua_matrix.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\lua_vector.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\matrix.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\lua_binding\vector.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\NewtonUtils\NewtonCharacterController.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_AABB.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Animation.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Audio.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Brush.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Camera.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Character.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Console.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Core.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Engine.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Font.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Geometry.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Input.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Logger.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Material.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Maths.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Matrix.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Mesh.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Model.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_MPEG.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Octree.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Physics.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_PhysicsObject.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Placeable.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Quaternion.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Resource.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Rope.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Scene.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Script.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_SDL_GL_Utils.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Shader.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Skybox.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Sprite.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_State.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Terrain.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Texture.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Timer.h" />
+    <ClInclude Include="..\..\..\codebase\symmetry\SYM_Vector.h" />
+    <ClInclude Include="CharacterBase.h" />
+    <ClInclude Include="CharacterPlayer.h" />
+    <ClInclude Include="EnemyBase.h" />
+    <ClInclude Include="Explosion.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Hacking.h" />
+    <ClInclude Include="HUD.h" />
+    <ClInclude Include="IntroVideos.h" />
+    <ClInclude Include="Inventory.h" />
+    <ClInclude Include="Level.h" />
+    <ClInclude Include="LevelSelect.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="PickupBase.h" />
+    <ClInclude Include="PickupGrappleGun.h" />
+    <ClInclude Include="PickupRocketLauncher.h" />
+    <ClInclude Include="PickupRocketTurretRemote.h" />
+    <ClInclude Include="Playground.h" />
+    <ClInclude Include="ProjectileBase.h" />
+    <ClInclude Include="ProjectileSeek.h" />
+    <ClInclude Include="Scripting.h" />
+    <ClInclude Include="Spawn.h" />
+    <ClInclude Include="VideoBoard.h" />
+    <ClInclude Include="WeaponBase.h" />
+    <ClInclude Include="WeaponGrappleGun.h" />
+    <ClInclude Include="WeaponLaser.h" />
+    <ClInclude Include="WeaponMiniTurret.h" />
+    <ClInclude Include="WeaponRocketLauncher.h" />
+    <ClInclude Include="WeaponRocketTurret.h" />
+    <ClInclude Include="WeaponTurretGun.h" />
+    <ClInclude Include="WeaponTurretLauncher.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\post_bloom.cgfx" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

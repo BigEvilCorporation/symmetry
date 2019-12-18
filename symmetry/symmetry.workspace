@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="symmetry workspace">
+		<Project filename="../S3DMConvertor/S3DMConvertor.cbp" />
+		<Project filename="symmetry.cbp" active="1" />
+		<Project filename="../symcraft/Symcraft/Symcraft.cbp" />
+	</Workspace>
+</CodeBlocks_workspace_file>

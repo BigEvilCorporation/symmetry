@@ -1,0 +1,118 @@
+
+float4x4 WorldViewProj : WorldViewProjection;
+float3 CameraPosition : CAMPOS;
+
+float3 LightPosition = {1.0f, 1.0f, -1.0f};
+
+float4 AmbientColour : COLOR
+<
+	string UIWidget = "Color";
+	string UIName =  "Ambient Colour";
+>  = {0.8f, 0.8f, 0.8f, 1.0f};
+
+float4 LightColour : COLOR
+<
+	string UIWidget = "Color";
+	string UIName =  "Light Colour";
+>  = {0.8f, 0.8f, 0.8f, 1.0f};
+
+float LightStrength
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 100.0;
+	float UIStep = 0.01;
+	string UIName =  "Specular Level";
+> = 0.5;
+
+float Shininess
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "Shininess";
+> = 0.5;
+
+texture NormalTexture
+<
+	string UIName =  "Normal Map";
+	string ResourceType = "2D";
+>;
+
+sampler2D NormalSampler = sampler_state
+{
+	Texture = <NormalTexture>;
+	MinFilter = LinearMipMapLinear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+struct VInput
+{
+	float4 Position : POSITION;
+	float2 UVCoord : TEXCOORD0;
+};
+
+struct VOutput
+{
+	float4 Position : POSITION;
+	float3 Colour : COLOR0;
+	float2 UVCoord : TEXCOORD0;
+	float3 LV : TEXCOORD1;
+	float3 HV : TEXCOORD2;
+};
+
+VOutput VShader(VInput Input)
+{
+	VOutput Output;
+	
+	Output.Position = mul(WorldViewProj, Input.Position);
+	Output.UVCoord = Input.UVCoord;
+	
+	Output.LV = normalize( LightPosition - Input.Position).yzx;
+	
+	float3 viewV = normalize( CameraPosition - Input.Position).yzx;
+	
+	Output.HV = normalize( (viewV + Output.LV) );
+	
+	float d = distance ( LightPosition, Input.Position );
+	Output.Colour = LightColour * saturate ( LightStrength / (d * d) );
+	
+	return Output;
+}
+
+float4 PShader(VOutput Input) : COLOR
+{
+	float N = normalize( (float3)tex2D(NormalSampler, Input.UVCoord).xyz * 2.0 - 1.0);
+	
+	float NdotL = saturate ( dot(N, normalize(Input.LV) ) );
+	float NdotH = saturate ( dot(N, normalize(Input.HV) ) );
+	
+	float4 lighting = lit(NdotL, NdotH, Shininess);
+	//float3 colorMap = (float3)tex2D(diffuseMap, uv).xyz;
+	//float3 C = lighting.yyy * colorMap.xyz + lighting.zzz * tex2D(normalMap, uv).aaa;
+	//C = lColor.xyz * C + ambientColor * colorMap.xyz;
+	
+	float3 C = lighting.yyy + lighting.zzz * tex2D(NormalSampler, Input.UVCoord).aaa;
+	C = Input.Colour.xyz * C + AmbientColour;
+
+
+	return float4(C, 1.0);
+}
+
+technique technique0
+{
+	pass p0
+	{
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = false;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+		
+		VertexProgram = compile vp30 VShader();
+		FragmentProgram = compile fp30 PShader();
+	}
+}

@@ -1,0 +1,195 @@
+
+///////////////////////////////
+//Tweakables
+///////////////////////////////
+float Script : STANDARDSGLOBAL
+<
+    string UIWidget = "none";
+    string ScriptClass = "scene";
+    string ScriptOrder = "postprocess";
+    string ScriptOutput = "color";
+    string Script = "Technique=Main;";
+> = 0.8;
+
+float DepthThreshold
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 0.1;
+	float UIStep = 0.0001;
+	string UIName =  "Depth Threshold";
+> = 0.004;
+
+float EdgeThickness
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.001;
+	string UIName =  "Edge Thickness";
+> = 0.01;
+
+float4 EdgeColour
+<
+	string UIWidget = "Color";
+	string UIName =  "Edge Colour";
+>  = {0.0f, 0.0f, 0.0f, 1.0f};
+
+float4 ClearColor
+<
+    string UIWidget = "color";
+    string UIName = "Clear (Bg) Color";
+> = {0,0,0,1.0};
+
+float ClearDepth
+<
+    string UIWidget = "None";
+> = 0.0;
+
+///////////////////////////////
+//Textures/Samplers
+///////////////////////////////
+texture SceneTexture : RENDERCOLORTARGET
+<
+    float2 ViewPortRatio = {1.0, 1.0};
+    int MipLevels = 1;
+    string Format = "X8R8G8B8" ;
+    string UIWidget = "None";
+>;
+
+sampler2D SceneSampler = sampler_state
+{
+    texture = <SceneTexture>;
+    WrapS = Wrap;
+    WrapT = Wrap;
+    MinFilter = Linear;
+    MagFilter = Linear;
+};
+
+texture DepthTexture
+<
+    float2 ViewPortRatio = {1.0, 1.0};
+    string Format = "D24S8";
+>;
+
+sampler2D DepthSampler = sampler_state
+{
+    texture = <DepthTexture>;
+    WrapS = Wrap;
+    WrapT = Wrap;
+    MinFilter = Linear;
+    MagFilter = Linear;
+	MipFilter = Linear;
+};
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+float4x4 World : WORLD;
+float4x4 ViewIT : VIEWINVERSETRANSPOSE;
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+    float4 Position : POSITION;
+    float4 Normal 	: NORMAL;
+	float2 UVCoord  : TEXCOORD0;
+};
+
+struct VOutput
+{
+    float4 Position : POSITION;
+	float2 UVCoord 	: TEXCOORD0;
+};
+
+struct PInput
+{
+	float2 UVCoord	: TEXCOORD0;
+	float4 Position	: WPOS;
+};
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+VOutput VRenderToTexture(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = mul(WorldViewProj, IN.Position);
+	OUT.UVCoord = IN.UVCoord;
+	
+	return OUT;
+}
+
+VOutput VRenderQuad(VInput IN)
+{
+	//Create output object
+	VOutput OUT;
+	
+	//Calculate output position
+	OUT.Position = IN.Position;
+	OUT.UVCoord = IN.UVCoord;
+	
+	return OUT;
+}
+
+///////////////////////////////
+//Pixel shader
+///////////////////////////////
+float4 PRenderToTexture(PInput IN) : COLOR
+{
+	float4 Colour = float4(0.8, 0.8, 0.8, IN.Position.w);
+	
+	return Colour;
+}
+
+float4 PShader(VOutput IN) : COLOR
+{
+	//Get current pixel
+	float4 Colour = tex2D(SceneSampler, IN.UVCoord);
+	
+	//Get current pixel depth
+	float Depth = Colour.a;
+	
+	//How far to sample from this pixel
+	float Offset = EdgeThickness * Depth;
+	
+	//Get depth difference of pixels around this one
+	float Top 		= tex2D(SceneSampler, IN.UVCoord + float2(0.0, Offset)).a - Depth;
+	float Bottom 	= tex2D(SceneSampler, IN.UVCoord + float2(0.0, -Offset)).a - Depth;
+	float Left 		= tex2D(SceneSampler, IN.UVCoord + float2(-Offset, 0.0)).a - Depth;
+	float Right 	= tex2D(SceneSampler, IN.UVCoord + float2(Offset, 0.0)).a - Depth;
+	
+	float TopLeft 		= tex2D(SceneSampler, IN.UVCoord + float2(Offset, -Offset)).a - Depth;
+	float TopRight 		= tex2D(SceneSampler, IN.UVCoord + float2(Offset, Offset)).a - Depth;
+	float BottomLeft 	= tex2D(SceneSampler, IN.UVCoord + float2(-Offset, Offset)).a - Depth;
+	float BottomRight 	= tex2D(SceneSampler, IN.UVCoord + float2(-Offset, Offset)).a - Depth;
+	
+	//If the depth difference is greater than the threshold, make this pixel the edge colour
+	if(Top 		> DepthThreshold) return EdgeColour;
+	if(Bottom 	> DepthThreshold) return EdgeColour;
+	if(Left 	> DepthThreshold) return EdgeColour;
+	if(Right 	> DepthThreshold) return EdgeColour;
+	
+	if(TopLeft 		> DepthThreshold) return EdgeColour;
+	if(TopRight 	> DepthThreshold) return EdgeColour;
+	if(BottomLeft 	> DepthThreshold) return EdgeColour;
+	if(BottomRight 	> DepthThreshold) return EdgeColour;
+	
+	return Colour;
+}
+
+technique Main
+{
+	
+	pass p1
+	{
+		//VertexShader = compile vp30 VRenderQuad();
+		PixelShader = compile fp30 PShader();
+	}
+}

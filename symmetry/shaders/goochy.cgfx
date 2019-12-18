@@ -1,0 +1,272 @@
+/*********************************************************************NVMH3****
+$Revision: #3 $
+
+Copyright NVIDIA Corporation 2007
+TO THE MAXIMUM EXTENT PERMITTED BY APPLICABLE LAW, THIS SOFTWARE IS PROVIDED
+*AS IS* AND NVIDIA AND ITS SUPPLIERS DISCLAIM ALL WARRANTIES, EITHER EXPRESS
+OR IMPLIED, INCLUDING, BUT NOT LIMITED TO, IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS FOR A PARTICULAR PURPOSE.  IN NO EVENT SHALL NVIDIA OR ITS SUPPLIERS
+BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES
+WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS,
+BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY
+LOSS) ARISING OUT OF THE USE OF OR INABILITY TO USE THIS SOFTWARE, EVEN IF
+NVIDIA HAS BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+
+% Gooch shading w/glossy hilight in HLSL ps_2 pixel shader.
+% Textured and non-textued versions are supplied.
+
+keywords: material stylized classic
+
+
+To learn more about shading, shaders, and to bounce ideas off other shader
+    authors and users, visit the NVIDIA Shader Library Forums at:
+
+    http://developer.nvidia.com/forums/
+
+******************************************************************************/
+
+float Script : STANDARDSGLOBAL <
+    string UIWidget = "none";
+    string ScriptClass = "object";
+    string ScriptOrder = "standard";
+    string ScriptOutput = "color";
+    string Script = "Technique=Technique?Untextured:Textured;";
+> = 0.8;
+
+//// UN-TWEAKABLES - AUTOMATICALLY-TRACKED TRANSFORMS ////////////////
+
+float4x4 WorldITXf : WorldInverseTranspose < string UIWidget="None"; >;
+float4x4 WvpXf : WorldViewProjection < string UIWidget="None"; >;
+float4x4 WorldXf : World < string UIWidget="None"; >;
+float4x4 ViewIXf : ViewInverse < string UIWidget="None"; >;
+
+/************* TWEAKABLES **************/
+
+float3 Lamp0Pos : Position <
+    string Object = "PointLight0";
+    string UIName =  "Lamp 0 Position";
+    string Space = "World";
+> = {-0.5f,2.0f,1.25f};
+
+float3 LiteColor <
+    string UIName =  "Lite Surface";
+    string UIWidget = "Color";
+> = {0.8f, 0.5f, 0.1f};
+
+float3 DarkColor <
+    string UIName =  "Dark Surface";
+    string UIWidget = "Color";
+> = {0.0f, 0.0f, 0.0f};
+
+float3 WarmColor <
+    string UIName =  "Gooch Warm Tone";
+    string UIWidget = "Color";
+> = {0.5f, 0.4f, 0.05f};
+
+float3 CoolColor <
+    string UIName =  "Gooch Cool Tone";
+    string UIWidget = "Color";
+> = {0.05f, 0.05f, 0.6f};
+
+float3 SpecColor : Specular <
+    string UIName =  "Hilight";
+    string UIWidget = "Color";
+> = {0.7f, 0.7f, 1.0f};
+
+float SpecExpon : SpecularPower <
+    string UIWidget = "slider";
+    float UIMin = 1.0;
+    float UIMax = 128.0;
+    float UIStep = 1.0;
+    string UIName =  "Specular Exponent";
+> = 40.0;
+
+float GlossTop <
+    string UIWidget = "slider";
+    float UIMin = 0.2;
+    float UIMax = 1.0;
+    float UIStep = 0.05;
+    string UIName =  "Maximum for Gloss Dropoff";
+> = 0.7;
+
+float GlossBot
+<
+    string UIWidget = "slider";
+    float UIMin = 0.05;
+    float UIMax = 0.95;
+    float UIStep = 0.05;
+    string UIName =  "Minimum for Gloss Dropoff";
+> = 0.5;
+
+float GlossDrop
+<
+    string UIWidget = "slider";
+    float UIMin = 0.0;
+    float UIMax = 1.0;
+    float UIStep = 0.05;
+    string UIName =  "Strength of Glossy Dropoff";
+> = 0.2;
+
+texture ColorTexture  <
+    string ResourceName = "default_color.dds";
+    string UIName =  "Diffuse Texture";
+    string ResourceType = "2D";
+>;
+
+sampler2D ColorSampler = sampler_state {
+    Texture = <ColorTexture>;
+    MinFilter = LinearMipMapLinear;
+    MagFilter = Linear;
+    WrapS = Repeat;
+    WrapT = Repeat;
+};  
+
+//
+// #define this macro to permit the import and use of shared shadow
+//  maps created by COLLADA-FX.
+//
+// #define USE_SHARED_SHADOW
+
+#ifdef USE_SHARED_SHADOW
+#define MAX_SHADOW_BIAS 0.01
+#define MIN_SHADOW_BIAS 0.00005
+#include "include/shadowMap.cgh"
+DECLARE_SHADOW_XFORMS("SpotLight0",LampViewXf,LampProjXf,ShadowViewProjXf)
+DECLARE_SHADOW_BIAS
+DECLARE_SHADOW_MAPS(ColorShadTarget,ColorShadSampler,DepthShadTarget,DepthShadSampler)
+
+float ShadDens <
+    string UIWidget = "slider";
+    float UIMin = 0.0;
+    float UIMax = 1.0;
+    float UIStep = 0.01;
+    string UIName =  "Shadow Density";
+> = 0.7;
+#endif /* USE_SHARED_SHADOW */
+
+
+//////////////////////////
+
+/* data from application vertex buffer */
+struct appdata {
+    float3 Position	: POSITION;
+    float4 UV		: TEXCOORD0;
+    float4 Normal	: NORMAL;
+    float4 Tangent	: TANGENT0;
+    float4 Binormal	: BINORMAL0;
+};
+
+/* data passed from vertex shader to pixel shader */
+struct vertexOutput {
+    float4 HPosition	: POSITION;
+    float2 UV		: TEXCOORD0;
+    // The following values are passed in "World" coordinates since
+    //   it tends to be the most flexible and easy for handling
+    //   reflections, sky lighting, and other "global" effects.
+    float3 LightVec	: TEXCOORD1;
+    float3 WorldNormal	: TEXCOORD2;
+    float3 WorldTangent	: TEXCOORD3;
+    float3 WorldBinormal : TEXCOORD4;
+    float3 WorldView	: TEXCOORD5;
+#ifdef USE_SHARED_SHADOW
+    // This optional value expresses the current location in "light"
+    //   coordinates for use with shadow mapping.
+    float4 LProj	: LPROJ_COORD;
+#endif /* USE_SHARED_SHADOW */
+};
+
+/*********** vertex shader ******/
+
+/*********** Generic Vertex Shader ******/
+
+vertexOutput std_VS(appdata IN) {
+    vertexOutput OUT = (vertexOutput)0;
+    OUT.WorldNormal = mul(WorldITXf,IN.Normal).xyz;
+    OUT.WorldTangent = mul(WorldITXf,IN.Tangent).xyz;
+    OUT.WorldBinormal = mul(WorldITXf,IN.Binormal).xyz;
+    float4 Po = float4(IN.Position.xyz,1);
+    float4 Pw = mul(WorldXf,Po);
+    OUT.LightVec = (Lamp0Pos - Pw.xyz);
+#ifdef FLIP_TEXTURE_Y
+    OUT.UV = float2(IN.UV.x,(1.0-IN.UV.y));
+#else /* !FLIP_TEXTURE_Y */
+    OUT.UV = IN.UV.xy;
+#endif /* !FLIP_TEXTURE_Y */
+#ifdef USE_SHARED_SHADOW
+    float4 Pl = mul(ShadowViewProjXf,Pw);  // "P" in light coords
+    float4x4 BiasXf = make_bias_mat(ShadBias);
+    OUT.LProj = mul(BiasXf,Pl);		// bias to make texcoord
+#endif /* USE_SHARED_SHADOW */
+    OUT.WorldView = normalize(float3(ViewIXf[0].w,ViewIXf[1].w,ViewIXf[2].w) - Pw.xyz);
+    OUT.HPosition = mul(WvpXf,Po);
+    return OUT;
+}
+
+/*********** pixel shader ******/
+
+void gooch_shared(vertexOutput IN,
+		out float4 DiffuseContrib,
+		out float4 SpecularContrib)
+{
+    float3 Ln = normalize(IN.LightVec.xyz);
+    float3 Nn = normalize(IN.WorldNormal);
+    float3 Vn = normalize(IN.WorldView);
+    float3 Hn = normalize(Vn + Ln);
+    float hdn = pow(max(0,dot(Hn,Nn)),SpecExpon);
+    float g_Min = min(GlossBot,GlossTop);
+    float g_Max = max(GlossBot,GlossTop);
+    float g_Dr = (1.0 - GlossDrop);
+    hdn = hdn * (GlossDrop+smoothstep(g_Min,g_Max,hdn)*g_Dr);
+    float ldn = dot(Ln,Nn);
+#ifdef USE_SHARED_SHADOW
+    float shadowed = tex2Dproj(DepthShadSampler,IN.LProj).x;
+	float faded = 1.0-(ShadDens*(1.0-shadowed));
+	if (ldn>0) {
+	    ldn *= faded;
+	}
+	hdn *= shadowed;
+#endif /* USE_SHARED_SHADOW */
+    SpecularContrib = float4((hdn * SpecColor),1);
+    float mixer = 0.5 * (ldn + 1.0);
+    float3 surfColor = lerp(DarkColor,LiteColor,mixer);
+    float3 toneColor = lerp(CoolColor,WarmColor,mixer);
+    DiffuseContrib = float4((surfColor + toneColor),1);
+}
+
+float4 gooch_PS(vertexOutput IN) :COLOR
+{
+	float4 diffContrib;
+	float4 specContrib;
+	gooch_shared(IN,diffContrib,specContrib);
+    float4 result = diffContrib + specContrib;
+    return result;
+}
+
+float4 goochT_PS(vertexOutput IN) :COLOR
+{
+	float4 diffContrib;
+	float4 specContrib;
+	gooch_shared(IN,diffContrib,specContrib);
+    float4 result = tex2D(ColorSampler,IN.UV.xy)*diffContrib + specContrib;
+    return result;
+}
+
+/*************/
+
+technique Textured <
+	string Script = "Pass=p0;";
+> {
+	pass p0 <
+	string Script = "Draw=geometry;";
+    > {		
+        VertexProgram = compile vp40 std_VS();
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = false;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+        FragmentProgram = compile fp40 goochT_PS();
+    }
+}
+
+/***************************** eof ***/

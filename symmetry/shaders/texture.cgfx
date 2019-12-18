@@ -1,0 +1,109 @@
+/*
+
+% Description of my shader.
+% Second line of description for my shader.
+
+keywords: material classic
+
+date: YYMMDD
+
+*/
+
+float4x4 WorldViewProj : WorldViewProjection;
+
+
+	  texture Diffuse 
+	  <
+	  	string ResourceName = "";//Optional default file name
+	  	string UIName =  "Diffuse Texture";
+	  	string ResourceType = "2D";
+	  >;
+
+	  sampler2D DiffuseSampler = sampler_state
+	  {
+	  	Texture = <Diffuse>;
+	 	MinFilter = LinearMipMapLinear;
+	 	MagFilter = Linear;
+	  	WrapS = Repeat;
+	  	WrapT = Repeat;
+	  };
+	  
+	  
+	  	  float UTile
+	  	  <
+	  	  string UIWidget = "slider";
+	  	  float UIMin = 1.0;
+	  	  float UIMax = 50.0;
+	  	  float UIStep = 0.1;
+	  	  string UIName =  "UTile";
+	  	  > = 1.0;
+		  
+		  float VTile
+	  	  <
+	  	  string UIWidget = "slider";
+	  	  float UIMin = 1.0;
+	  	  float UIMax = 50.0;
+	  	  float UIStep = 0.1;
+	  	  string UIName =  "VTile";
+	  	  > = 1.0;
+		  
+		  float UOffset
+	  	  <
+	  	  string UIWidget = "slider";
+	  	  float UIMin = 0.0;
+	  	  float UIMax = 1.0;
+	  	  float UIStep = 0.01;
+	  	  string UIName =  "UOffset";
+	  	  > = 0.0;
+		  
+		  float VOffset : TIME
+	  	  <
+	  	  string UIWidget = "slider";
+	  	  float UIMin = 0.0;
+	  	  float UIMax = 1.0;
+	  	  float UIStep = 0.01;
+	  	  string UIName =  "VOffset";
+	  	  > = 0.0;
+	  	
+	  
+	  struct VInput
+	  {
+		  float3 Position : POSITION;
+		  float2 UVCoord : TEXCOORD0;
+	  };
+	  
+	  struct VOutput
+	  {
+		  float4 Position : POSITION;
+		  float2 UVCoord : TEXCOORD0;
+	  };
+	
+
+VOutput VShader(VInput IN)
+{
+	VOutput OUT;
+	OUT.Position = mul(WorldViewProj, float4(IN.Position.xyz, 1.0f));
+	OUT.UVCoord.x = IN.UVCoord.x * UTile + UOffset;
+	OUT.UVCoord.y = IN.UVCoord.y * VTile + VOffset;
+	
+	return OUT;
+}
+
+float4 PShader(VOutput IN) : COLOR
+{
+	return tex2D(DiffuseSampler, IN.UVCoord);
+}
+
+technique technique0
+{
+	pass p0
+	{
+		DepthTestEnable = true;
+		DepthMask = true;
+		CullFaceEnable = true;
+		BlendEnable = false;
+		DepthFunc = LEqual;
+		VertexProgram = compile vp40 VShader();
+		FragmentProgram = compile fp20 PShader();
+	}
+}

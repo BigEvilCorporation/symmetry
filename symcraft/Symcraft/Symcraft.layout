@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="AppAssets.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="1248" topLine="81" />
+	</File>
+	<File name="AppAssets.h" open="0" top="0" tabpos="1">
+		<Cursor position="2171" topLine="41" />
+	</File>
+	<File name="AppGLViewport.cpp" open="0" top="0" tabpos="1">
+		<Cursor position="4008" topLine="149" />
+	</File>
+	<File name="AppGLViewport.h" open="0" top="0" tabpos="2">
+		<Cursor position="1617" topLine="48" />
+	</File>
+	<File name="AppMain.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="25658" topLine="715" />
+	</File>
+	<File name="AppMain.h" open="0" top="0" tabpos="4">
+		<Cursor position="2480" topLine="85" />
+	</File>
+	<File name="AppOpenGL.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="3913" topLine="129" />
+	</File>
+	<File name="AppOpenGL.h" open="0" top="0" tabpos="2">
+		<Cursor position="96" topLine="5" />
+	</File>
+	<File name="../../symmetry/SYM_AABB.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="448" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Brush.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1068" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Camera.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="185" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Console.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1424" topLine="45" />
+	</File>
+	<File name="../../symmetry/SYM_Engine.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2083" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Engine.h" open="0" top="0" tabpos="0">
+		<Cursor position="2542" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Font.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="3811" topLine="128" />
+	</File>
+	<File name="../../symmetry/SYM_Font.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="67" />
+	</File>
+	<File name="../../symmetry/SYM_Geometry.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1767" topLine="65" />
+	</File>
+	<File name="../../symmetry/SYM_Geometry.h" open="0" top="0" tabpos="0">
+		<Cursor position="495" topLine="49" />
+	</File>
+	<File name="../../symmetry/SYM_Level.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="27393" topLine="740" />
+	</File>
+	<File name="../../symmetry/SYM_MPEG.h" open="0" top="0" tabpos="0">
+		<Cursor position="235" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Material.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="13837" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Mesh.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1362" topLine="46" />
+	</File>
+	<File name="../../symmetry/SYM_Mesh.h" open="0" top="0" tabpos="0">
+		<Cursor position="2482" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Physics.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="4508" topLine="233" />
+	</File>
+	<File name="../../symmetry/SYM_Physics.h" open="0" top="0" tabpos="0">
+		<Cursor position="225" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_PhysicsObject.h" open="0" top="0" tabpos="0">
+		<Cursor position="704" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Resource.h" open="0" top="0" tabpos="0">
+		<Cursor position="971" topLine="18" />
+	</File>
+	<File name="../../symmetry/SYM_SDL_GL_Utils.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="196" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Scene.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="2656" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Scene.h" open="0" top="0" tabpos="0">
+		<Cursor position="903" topLine="23" />
+	</File>
+	<File name="../../symmetry/SYM_Script.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="6858" topLine="269" />
+	</File>
+	<File name="../../symmetry/SYM_Shader.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="254" topLine="0" />
+	</File>
+	<File name="../../symmetry/SYM_Timer.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1145" topLine="18" />
+	</File>
+	<File name="../../symmetry/SYM_Timer.h" open="0" top="0" tabpos="0">
+		<Cursor position="572" topLine="5" />
+	</File>
+</CodeBlocks_layout_file>

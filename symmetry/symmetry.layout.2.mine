@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="Debug" />
+	<File name="SYM_3DMaths.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="2242" topLine="100" />
+	</File>
+	<File name="SYM_3DMaths.h" open="0" top="0" tabpos="12">
+		<Cursor position="2867" topLine="105" />
+	</File>
+	<File name="SYM_Brush.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="6021" topLine="42" />
+	</File>
+	<File name="SYM_Brush.h" open="0" top="0" tabpos="1">
+		<Cursor position="324" topLine="0" />
+	</File>
+	<File name="SYM_Camera.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="3629" topLine="21" />
+	</File>
+	<File name="SYM_Camera.h" open="0" top="0" tabpos="4">
+		<Cursor position="448" topLine="0" />
+	</File>
+	<File name="SYM_Console.cpp" open="0" top="0" tabpos="11">
+		<Cursor position="5998" topLine="224" />
+	</File>
+	<File name="SYM_Debug.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="2880" topLine="26" />
+	</File>
+	<File name="SYM_Debug.h" open="0" top="0" tabpos="0">
+		<Cursor position="344" topLine="0" />
+	</File>
+	<File name="SYM_Engine.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="448" topLine="6" />
+	</File>
+	<File name="SYM_Engine.h" open="0" top="0" tabpos="6">
+		<Cursor position="1673" topLine="48" />
+	</File>
+	<File name="SYM_Font.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="4499" topLine="129" />
+	</File>
+	<File name="SYM_Font.h" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="36" />
+	</File>
+	<File name="SYM_Geometry.cpp" open="0" top="0" tabpos="5">
+		<Cursor position="778" topLine="36" />
+	</File>
+	<File name="SYM_Geometry.h" open="0" top="0" tabpos="9">
+		<Cursor position="696" topLine="12" />
+	</File>
+	<File name="SYM_Input.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="2870" topLine="30" />
+	</File>
+	<File name="SYM_Input.h" open="0" top="0" tabpos="3">
+		<Cursor position="51" topLine="0" />
+	</File>
+	<File name="SYM_Mesh.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="12" />
+	</File>
+	<File name="SYM_Physics.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="12" />
+	</File>
+	<File name="SYM_Resource.h" open="0" top="0" tabpos="10">
+		<Cursor position="1500" topLine="36" />
+	</File>
+	<File name="SYM_Scene.cpp" open="1" top="1" tabpos="3">
+		<Cursor position="3219" topLine="127" />
+	</File>
+	<File name="SYM_Script.cpp" open="0" top="0" tabpos="2">
+		<Cursor position="12076" topLine="425" />
+	</File>
+	<File name="SYM_Script.h" open="0" top="0" tabpos="1">
+		<Cursor position="1287" topLine="33" />
+	</File>
+	<File name="SYM_Shader.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="9" />
+	</File>
+	<File name="SYM_Sprite.cpp" open="1" top="0" tabpos="1">
+		<Cursor position="2434" topLine="55" />
+	</File>
+	<File name="SYM_Sprite.h" open="0" top="0" tabpos="1">
+		<Cursor position="1197" topLine="21" />
+	</File>
+	<File name="SYM_Texture.cpp" open="0" top="0" tabpos="4">
+		<Cursor position="2665" topLine="75" />
+	</File>
+	<File name="SYM_Texture.h" open="0" top="0" tabpos="5">
+		<Cursor position="740" topLine="9" />
+	</File>
+	<File name="main.cpp" open="0" top="0" tabpos="6">
+		<Cursor position="800" topLine="15" />
+	</File>
+</CodeBlocks_layout_file>

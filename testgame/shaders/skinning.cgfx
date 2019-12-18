@@ -1,0 +1,49 @@
+/*
+
+% Skeletal animation vertex shader
+% SYMMETRY ENGINE
+
+Matt Phillips (c) 2008
+
+date: 31/08/08
+
+*/
+
+///////////////////////////////
+//Inputs
+///////////////////////////////
+float4x4 WorldViewProj : WORLDVIEWPROJECTION;
+uniform float4x4 BoneMatrices[30];
+
+
+///////////////////////////////
+//Structs
+///////////////////////////////
+struct VInput
+{
+	float3 Position	: POSITION;
+	int	   BoneID	: TEXCOORD1;
+	float  Weight	: TEXCOORD2;
+};
+
+
+///////////////////////////////
+//Vertex shader
+///////////////////////////////
+float4 VShader(VInput Input) : POSITION
+{
+	//Weight x (Bone Matrix + Position)
+	return Input.Weight * mul(BoneMatrices[Input.BoneID], float4(Input.Position, 1.0));
+}
+
+
+///////////////////////////////
+//Techniques
+///////////////////////////////
+technique technique0
+{
+	pass p0
+	{
+		VertexProgram = compile vp30 VShader();
+	}
+}

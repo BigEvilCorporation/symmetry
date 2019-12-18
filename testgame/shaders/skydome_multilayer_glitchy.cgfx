@@ -1,0 +1,153 @@
+/*
+
+SASHA :: Beartrap Interactive
+Multi-layered, 'glitchy' skydome shader
+
+26/02/2009
+
+Copyright (c) 2008, 2009, Matt Phillips, Beartrap Interactive
+
+*/
+
+float4x4 WorldViewProj : WorldViewProjection;
+float DeltaTime : RUNNINGTIME;
+
+
+float TimeOfDay
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "TimeOfDay";
+> = 1.0;
+
+float ExternalScrollSpeed
+<
+	string UIWidget = "slider";
+	float UIMin = 0.1;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "ExternalScrollSpeed";
+> = 0.5;
+
+float Internal1ScrollSpeed
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "Internal1ScrollSpeed";
+> = 0.01;
+
+float Internal2ScrollSpeed
+<
+	string UIWidget = "slider";
+	float UIMin = 0.0;
+	float UIMax = 1.0;
+	float UIStep = 0.01;
+	string UIName =  "Internal2ScrollSpeed";
+> = 0.02;
+
+float Tiling = 1.0f;
+
+texture ExternalSkyTexture
+<
+	string UIName =  "External Sky Texture";
+	string ResourceType = "2D";
+>;
+
+sampler2D ExternalSkySampler = sampler_state
+{
+	Texture = <ExternalSkyTexture>;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+texture InternalSky1Texture
+<
+	string UIName =  "Internal Layer 1 Sky Texture";
+	string ResourceType = "2D";
+>;
+
+sampler2D InternalSky1Sampler = sampler_state
+{
+	Texture = <InternalSky1Texture>;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+texture InternalSky2Texture
+<
+	string UIName =  "Internal Layer 2 Sky Texture";
+	string ResourceType = "2D";
+>;
+
+sampler2D InternalSky2Sampler = sampler_state
+{
+	Texture = <InternalSky2Texture>;
+	MinFilter = Linear;
+	MagFilter = Linear;
+	WrapS = Repeat;
+	WrapT = Repeat;
+};
+
+struct VInput
+{
+	float4 Position : POSITION;
+	float2 UVCoord	: TEXCOORD0;
+};
+
+struct VOutput
+{
+	float4 Position 	: POSITION;
+	float2 UVExterior	: TEXCOORD0;
+	float4 UVInterior	: TEXCOORD1;
+};
+
+VOutput VShader(VInput Input)
+{
+	VOutput Output;
+	
+	Output.Position = mul(WorldViewProj, Input.Position);
+	
+	//Scroll UV.y coords by delta time
+	Output.UVExterior.x = Input.UVCoord.x * Tiling;
+	Output.UVExterior.y = (Input.UVCoord.y - (DeltaTime * ExternalScrollSpeed)) * Tiling;
+	
+	Output.UVInterior.x = Input.UVCoord.x * Tiling;
+	Output.UVInterior.y = (Input.UVCoord.y + (DeltaTime * Internal1ScrollSpeed)) * Tiling;
+	
+	Output.UVInterior.z = Input.UVCoord.x * Tiling;
+	Output.UVInterior.w = (Input.UVCoord.y + (DeltaTime * Internal2ScrollSpeed)) * Tiling;
+	
+	return Output;
+}
+
+float4 PShader(VOutput Input) : COLOR
+{
+	//Interior, back layer
+	float4 Interior1Diffuse = tex2D(InternalSky1Sampler, Input.UVInterior.xy) * TimeOfDay;
+	
+	//Interior, front layer
+	float4 Interior2Diffuse = tex2D(InternalSky2Sampler, Input.UVInterior.zw) * TimeOfDay;
+	
+	//Alpha blend
+	float4 Result = Interior1Diffuse + (Interior2Diffuse * Interior2Diffuse.a);
+	
+	return Result;
+}
+
+technique Main
+{
+	pass p0
+	{
+		CullFaceEnable = true;	
+		VertexProgram = compile vp40 VShader();
+		FragmentProgram = compile fp40 PShader();
+	}
+}
