@@ -18,7 +18,7 @@
 			Name="Debug|Win32"
 			OutputDirectory="Debug"
 			IntermediateDirectory="Debug"
-			ConfigurationType="2"
+			ConfigurationType="1"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
 			CharacterSet="2"
 			>
@@ -40,11 +40,11 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\dependencies\include\lua;..\dependencies\include"
+				AdditionalIncludeDirectories="..\dependencies\include\lua;..\dependencies\include\newton\minimalMath;..\dependencies\include\newton;..\dependencies\include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_WINDOWS;SYM_DLL"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="3"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="0"
 				Detect64BitPortabilityProblems="true"
@@ -186,7 +186,27 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
+				RelativePath="..\dependencies\include\newton\minimalMath\dMathDefines.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\dependencies\include\newton\minimalMath\dMatrix.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\dependencies\include\newton\minimalMath\dQuaternion.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\dependencies\include\newton\minimalMath\dVector.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\main.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\NewtonUtils\NewtonCharacterController.cpp"
 				>
 			</File>
 			<File
@@ -218,10 +238,6 @@
 				>
 			</File>
 			<File
-				RelativePath=".\SYM_Debug.cpp"
-				>
-			</File>
-			<File
 				RelativePath=".\SYM_Engine.cpp"
 				>
 			</File>
@@ -235,10 +251,6 @@
 			</File>
 			<File
 				RelativePath=".\SYM_Input.cpp"
-				>
-			</File>
-			<File
-				RelativePath=".\SYM_Level.cpp"
 				>
 			</File>
 			<File

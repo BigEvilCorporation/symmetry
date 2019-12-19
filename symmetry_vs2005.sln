@@ -1,0 +1,62 @@
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual C++ Express 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Symcraft", "..\symcraft\Symcraft\Symcraft.vcproj", "{66F763AD-B576-4F43-BD5E-709D07FEB196}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymAnimationExport", "..\MaxExportPlugin\SymAnimationExport\SymAnimationExport\SymAnimationExport.vcproj", "{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymMaterialExport", "..\MaxExportPlugin\SymMaterialExport\SymMaterialExport\SymMaterialExport.vcproj", "{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymMeshExport", "..\MaxExportPlugin\SymMeshExport\SymMeshExport\SymMeshExport.vcproj", "{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SymSceneExport", "..\SymSceneExport\SymSceneExport.vcproj", "{AC9A6670-5BA5-4943-9092-66E0DB093036}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Symmetry", "symmetry\symmetry.vcproj", "{3C5F577D-869A-4654-BB08-3E89C61E96DC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Hybrid|Win32 = Hybrid|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Debug|Win32.ActiveCfg = Debug|Win32
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Debug|Win32.Build.0 = Debug|Win32
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Hybrid|Win32.ActiveCfg = Release|Win32
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Hybrid|Win32.Build.0 = Release|Win32
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Release|Win32.ActiveCfg = Release|Win32
+		{66F763AD-B576-4F43-BD5E-709D07FEB196}.Release|Win32.Build.0 = Release|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Debug|Win32.ActiveCfg = Debug|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Debug|Win32.Build.0 = Debug|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Hybrid|Win32.ActiveCfg = Hybrid|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Hybrid|Win32.Build.0 = Hybrid|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Release|Win32.ActiveCfg = Release|Win32
+		{E7CB76AA-6113-46BA-8EBC-8AE1D2B81210}.Release|Win32.Build.0 = Release|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Debug|Win32.Build.0 = Debug|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Hybrid|Win32.ActiveCfg = Hybrid|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Hybrid|Win32.Build.0 = Hybrid|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Release|Win32.ActiveCfg = Release|Win32
+		{C6C88F9C-D53A-4C0C-9D47-85EA6EF6979F}.Release|Win32.Build.0 = Release|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Debug|Win32.Build.0 = Debug|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Hybrid|Win32.ActiveCfg = Hybrid|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Hybrid|Win32.Build.0 = Hybrid|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Release|Win32.ActiveCfg = Release|Win32
+		{9C3ABDB4-ED7B-422B-AB5D-1DD0EDB28CD8}.Release|Win32.Build.0 = Release|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Debug|Win32.ActiveCfg = Debug|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Debug|Win32.Build.0 = Debug|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Hybrid|Win32.ActiveCfg = Hybrid|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Hybrid|Win32.Build.0 = Hybrid|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Release|Win32.ActiveCfg = Release|Win32
+		{AC9A6670-5BA5-4943-9092-66E0DB093036}.Release|Win32.Build.0 = Release|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Debug|Win32.Build.0 = Debug|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Hybrid|Win32.ActiveCfg = Release|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Hybrid|Win32.Build.0 = Release|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Release|Win32.ActiveCfg = Release|Win32
+		{3C5F577D-869A-4654-BB08-3E89C61E96DC}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -5,9 +5,9 @@
 
 #include "SYM_Core.h"
 
-#include "tests/MainMenuTest.h"
+#include "tests/HoverGame.h"
 
-CMainMenu MainMenuState;
+CHoverGameState MainState;
 
 #ifdef WIN32
 int APIENTRY WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)
@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 	if (!sym::Engine->Init()) return 0;
 
 	//Push back states
-	sym::Engine->StateManager.PushState(&MainMenuState);
+	sym::Engine->StateManager.PushState(&MainState);
 
 	//MAIN LOOP
 	while(sym::Engine->Update())

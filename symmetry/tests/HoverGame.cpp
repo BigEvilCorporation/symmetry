@@ -78,7 +78,7 @@ void CHovercraft::OnApplyForceAndTorque(const NewtonBody* Body, dFloat timestep,
 	sym::CVector3 Omega = ThisCraft->GetOmega();
 
 	//Get force direction in global space
-	sym::CVector3 ThrusterDir = Matrix.UnrotateVector(sym::CVector3(0, 1, 0));
+	sym::CVector3 ThrusterDir = Matrix.UnRotateVector(sym::CVector3(0, 1, 0));
 
 	sym::CVector3 TotalForce = ThisCraft->GravityForce;
 	sym::CVector3 TotalTorque(0, 0, 0);

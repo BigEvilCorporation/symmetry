@@ -123,8 +123,8 @@ class CHoverGameState : public sym::CState
 
 			Font.LoadTTFFont("arial", 12);
 
-			//Music.Load("barracks.ogg", sym::SOUND_3D);
-			Music.Play(sym::SOUND_LOOP);
+			//Music.Load("barracks.ogg", sym::SOUND_3D, true);
+			Music.Play();
 			Music.SetPosition(MoveBox->GetPosition());
 			Music.SetVolume(1.0f);
 			Music.SetConeDegrees(90.0f, 360.0f, 1.0f);
@@ -148,7 +148,7 @@ class CHoverGameState : public sym::CState
 		void Resume()
 		{
 			sym::Engine->Physics.Run();
-			Music.Play(sym::SOUND_LOOP);
+			Music.Play();
 		}
 
 		void HandleInput()
@@ -157,8 +157,8 @@ class CHoverGameState : public sym::CState
 			Hovercraft.SetSteerTorque(0.0f);
 
 			//Get mouse input
-			MouseRelX = sym::Engine->Input.GetMouseRelativeX() * sym::Engine->Input.GetMouseResX();
-			MouseRelY = sym::Engine->Input.GetMouseRelativeY() * sym::Engine->Input.GetMouseResY();
+			MouseRelX = sym::Engine->Input.GetMouseRelativeX() * sym::Engine->Input.GetMouseResolution();
+			MouseRelY = sym::Engine->Input.GetMouseRelativeY() * sym::Engine->Input.GetMouseResolution();
 
 			if(sym::Engine->Input.JoystickAvailable())
 			{

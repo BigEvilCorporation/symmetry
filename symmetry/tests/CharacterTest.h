@@ -160,8 +160,8 @@ class CCharTestState : public sym::CState
 		void HandleInput()
 		{
 			//Get mouse input
-			MouseRelX = sym::Engine->Input.GetMouseRelativeX() * sym::Engine->Input.GetMouseResX();
-			MouseRelY = sym::Engine->Input.GetMouseRelativeY() * sym::Engine->Input.GetMouseResY();
+			MouseRelX = sym::Engine->Input.GetMouseRelativeX() * sym::Engine->Input.GetMouseResolution();
+			MouseRelY = sym::Engine->Input.GetMouseRelativeY() * sym::Engine->Input.GetMouseResolution();
 
 			//SHOOT ROPE
 			if(sym::Engine->Input.IsLMBDown())
